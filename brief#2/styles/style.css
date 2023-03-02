@@ -1,0 +1,343 @@
+@font-face {
+    font-family: "Inter Bold";
+    src: url(../fonts/Inter/static/Inter-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Inter Light";
+    src: url(../fonts/Inter/static/Inter-Light.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+.header-background{
+    background-color: white;
+}
+
+.header-title{
+    color: black;
+}
+
+.material-symbols-outlined{
+    color: white;
+    
+}
+
+
+#span{
+    border-radius: 5px;
+    background-color: rgb(244, 183, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+}
+
+header {
+    width: 100%;
+    height: 84px;
+    display: flex;
+    position: fixed;
+    transition: all 300ms;
+    text-transform: uppercase;
+}
+
+
+header > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+
+header > div > p{
+    margin-left: 15px;
+    font-size: 25px;
+    color: white;
+    font-family: "Inter Bold";
+}
+
+header > div > p::first-letter{
+    font-size: 35px;
+    color: #d37d14;
+}
+
+header nav {
+    display: flex;
+
+    justify-content: flex-end;
+    
+}
+
+header nav ul {
+    list-style: none;
+    /* display: flex;
+    justify-content: flex-end; */
+    display: none;
+    
+}
+
+header div .material-symbols-outlined{
+    width: 10%;
+    margin-right: 15px;
+    transition: all 500ms;
+}
+
+main{
+    width: 100%;
+}
+
+main #banner,
+main #about{
+    height: 436px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main #banner{
+    background-position-x: -274px;
+    height: 600px;
+    background-attachment: fixed;
+    background-image: url(../img/banner_bg.jpg);
+}
+
+main #banner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main #banner p {
+    margin-top: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    color: white;
+    font-family: "Inter Light";
+}
+
+#orange, #bleu{
+    font-family: "Inter Bold";
+}
+
+main #banner h1{
+    font-family: "Inter Light";
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+
+
+main #about{
+    background-position-x: -383px;
+    background-position-y: 43px;
+    height: 1725px;
+    background-attachment: fixed;
+    background-image: url(../img/about-bg.jpg);
+}
+
+#orange{
+    color: #d37d14;
+}
+
+#bleu{
+    color: #41b9cc;
+}
+
+main #banner button{
+    margin-top: 20px;
+    width: 115px;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+    text-transform: uppercase;
+    font-family: "Inter Light";
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+
+main #about .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 55px;
+}
+
+main #about .container #box-one{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+main #about .container #round{
+    width: 110px;
+    height: 110px;
+    background-color: #f7c552;
+    border-radius: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main #about .container #round img{
+    max-width: 100%;
+}
+
+main #about .container h2{
+    margin-top: 45px;
+    font-family: 'Roboto', arial, sans-serif;
+    color: white;
+    font-size: 17px;
+    margin-bottom: 30px;
+}
+
+main #about .container #separator{
+    
+    margin: 0 auto;
+    width: 95%;
+    height: 1px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+main #about .container p{
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    font-family: "Inter Light";
+    margin-bottom: 20px;
+}
+
+main #about .container button{
+    letter-spacing: 1px;
+    font-size: 13px;
+    text-transform: uppercase;
+    background-color: #33c1cf;
+    font-weight: 500px;
+    padding: 12px 18px;
+    text-decoration: none;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    margin-bottom: 35px;
+}
+
+#gallery {
+    display: flex;
+    flex-direction: column;
+}
+
+#gallery #wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+#gallery #wrapper img{
+    width: 250px;
+    margin-bottom: 15px;
+}
+
+#gallery #wrapper img:last-child{
+    margin-bottom: 25px;
+}
+
+#gallery #back{
+    background-color: #33c1cf;
+    margin-bottom: 25px;
+    padding: 60px 0 25px 0;
+    text-align: center;
+}
+
+#gallery #back h2{
+    margin-top: 50px;
+    margin-bottom: 15px;
+    font-family: "Inter Bold";
+    color: white;
+    font-size: 22px;
+    letter-spacing: 2px;
+}
+
+#gallery #separator{
+    display: flex;
+    margin: 0 auto;
+    width: 95%;
+    height: 1px;
+    background-color: white;
+    margin-bottom: 15px;
+}
+
+#gallery #back p{
+    color: white;
+    font-family: "Inter Light";
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+#gallery #back nav ul{
+    list-style: none;
+}
+
+#gallery #back nav ul li a{
+    text-decoration: none;
+    color: white;
+    font-family: "Inter Light";
+    font-weight: bold;
+    font-size: 14px;
+    
+}
+
+#gallery #back nav ul li:first-child a{
+    color: #f7c552;
+    
+}
+
+#gallery #back nav ul li{
+    line-height: 35px;
+}
+
+#founder {
+    height: 700px;
+    background-color: #f7c552;
+    width: 100%;
+}
+
+#founder #cards{
+    padding-top: 80px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+#founder #screen-card #card{
+    border-radius: 5px;
+    width: 100%;
+    height: 250px;
+    margin: 0 auto;
+    background-color: white;
+}
+
+#founder #screen-card p{
+    width: 70%;
+    padding-top: 25px;
+    font-family: "Inter Light";
+    font-style: italic;
+    color: #a1a1a1;
+    text-align: center;
+    font-size: 16px;
+    margin: 0 auto;
+}
