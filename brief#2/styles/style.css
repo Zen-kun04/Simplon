@@ -309,7 +309,7 @@ main #about .container button{
 }
 
 #founder {
-    height: 700px;
+    height: 550px;
     background-color: #f7c552;
     width: 100%;
 }
@@ -340,4 +340,39 @@ main #about .container button{
     text-align: center;
     font-size: 16px;
     margin: 0 auto;
+}
+
+#founder #screen-card h2{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+    font-family: "Inter Light";
+}
+
+#founder #screen-card h3{
+    color: white;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 12px;
+    font-family: "Inter Light";
+}
+
+.circles {
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.circles div{
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: rgba(255, 255, 255, 0.473);
+}
+
+.circles div:first-child{
+    background-color: white;
 }
