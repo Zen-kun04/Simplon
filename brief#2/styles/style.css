@@ -444,5 +444,5 @@ main #about .container button {
 }
 
 #articles #block #buttons button:first-child {
-    color: #f7c552 !important;
+    color: #f7c552;
 }
