@@ -5,6 +5,7 @@
 
 
 `git clone`
+
 `git@github:username/repo.git`
 
 
@@ -13,7 +14,9 @@
 ----------
 
 `git add .`
+
 `git commit -d "Update message"`
+
 `git push`
 
 > ## Get updated repository in your current project
