@@ -4,9 +4,7 @@
 ----------
 
 
-`git clone`
-
-`git@github:username/repo.git`
+`git clone git@github:username/repo.git`
 
 
 
