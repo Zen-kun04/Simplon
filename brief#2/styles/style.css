@@ -8,27 +8,32 @@
     src: url(../fonts/Inter/static/Inter-Light.ttf);
 }
 
+@font-face {
+    font-family: "Inter Medium";
+    src: url(../fonts/Inter/static/Inter-Medium.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
 }
 
-.header-background{
+.header-background {
     background-color: white;
 }
 
-.header-title{
+.header-title {
     color: black;
 }
 
-.material-symbols-outlined{
+.material-symbols-outlined {
     color: white;
-    
+
 }
 
 
-#span{
+#span {
     border-radius: 5px;
     background-color: rgb(244, 183, 0);
     display: flex;
@@ -47,7 +52,7 @@ header {
 }
 
 
-header > div {
+header>div {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -56,14 +61,14 @@ header > div {
 }
 
 
-header > div > p{
+header>div>p {
     margin-left: 15px;
     font-size: 25px;
     color: white;
     font-family: "Inter Bold";
 }
 
-header > div > p::first-letter{
+header>div>p::first-letter {
     font-size: 35px;
     color: #d37d14;
 }
@@ -72,7 +77,7 @@ header nav {
     display: flex;
 
     justify-content: flex-end;
-    
+
 }
 
 header nav ul {
@@ -80,34 +85,34 @@ header nav ul {
     /* display: flex;
     justify-content: flex-end; */
     display: none;
-    
+
 }
 
-header div .material-symbols-outlined{
+header div .material-symbols-outlined {
     width: 10%;
     margin-right: 15px;
     transition: all 500ms;
 }
 
-main{
+main {
     width: 100%;
 }
 
 main #banner,
-main #about{
+main #about {
     height: 436px;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-main #banner{
+main #banner {
     background-position-x: -274px;
     height: 600px;
     background-attachment: fixed;
     background-image: url(../img/banner_bg.jpg);
 }
 
-main #banner{
+main #banner {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -123,11 +128,12 @@ main #banner p {
     font-family: "Inter Light";
 }
 
-#orange, #bleu{
+#orange,
+#bleu {
     font-family: "Inter Bold";
 }
 
-main #banner h1{
+main #banner h1 {
     font-family: "Inter Light";
     font-size: 20px;
     text-align: center;
@@ -135,7 +141,7 @@ main #banner h1{
 }
 
 
-main #about{
+main #about {
     background-position-x: -383px;
     background-position-y: 43px;
     height: 1725px;
@@ -143,15 +149,15 @@ main #about{
     background-image: url(../img/about-bg.jpg);
 }
 
-#orange{
+#orange {
     color: #d37d14;
 }
 
-#bleu{
+#bleu {
     color: #41b9cc;
 }
 
-main #banner button{
+main #banner button {
     margin-top: 20px;
     width: 115px;
     padding: 10px;
@@ -165,21 +171,21 @@ main #banner button{
 
 
 
-main #about .container{
+main #about .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 55px;
 }
 
-main #about .container #box-one{
+main #about .container #box-one {
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 100%;
 }
 
-main #about .container #round{
+main #about .container #round {
     width: 110px;
     height: 110px;
     background-color: #f7c552;
@@ -190,11 +196,11 @@ main #about .container #round{
     justify-content: center;
 }
 
-main #about .container #round img{
+main #about .container #round img {
     max-width: 100%;
 }
 
-main #about .container h2{
+main #about .container h2 {
     margin-top: 45px;
     font-family: 'Roboto', arial, sans-serif;
     color: white;
@@ -202,8 +208,8 @@ main #about .container h2{
     margin-bottom: 30px;
 }
 
-main #about .container #separator{
-    
+main #about .container #separator {
+
     margin: 0 auto;
     width: 95%;
     height: 1px;
@@ -211,7 +217,7 @@ main #about .container #separator{
     margin-bottom: 20px;
 }
 
-main #about .container p{
+main #about .container p {
     font-size: 12px;
     color: white;
     text-align: center;
@@ -219,7 +225,7 @@ main #about .container p{
     margin-bottom: 20px;
 }
 
-main #about .container button{
+main #about .container button {
     letter-spacing: 1px;
     font-size: 13px;
     text-transform: uppercase;
@@ -245,23 +251,23 @@ main #about .container button{
     width: 100%;
 }
 
-#gallery #wrapper img{
+#gallery #wrapper img {
     width: 250px;
     margin-bottom: 15px;
 }
 
-#gallery #wrapper img:last-child{
+#gallery #wrapper img:last-child {
     margin-bottom: 25px;
 }
 
-#gallery #back{
+#gallery #back {
     background-color: #33c1cf;
     margin-bottom: 25px;
     padding: 60px 0 25px 0;
     text-align: center;
 }
 
-#gallery #back h2{
+#gallery #back h2 {
     margin-top: 50px;
     margin-bottom: 15px;
     font-family: "Inter Bold";
@@ -270,7 +276,7 @@ main #about .container button{
     letter-spacing: 2px;
 }
 
-#gallery #separator{
+#gallery #separator {
     display: flex;
     margin: 0 auto;
     width: 95%;
@@ -279,32 +285,32 @@ main #about .container button{
     margin-bottom: 15px;
 }
 
-#gallery #back p{
+#gallery #back p {
     color: white;
     font-family: "Inter Light";
     font-size: 12px;
     margin-bottom: 15px;
 }
 
-#gallery #back nav ul{
+#gallery #back nav ul {
     list-style: none;
 }
 
-#gallery #back nav ul li a{
+#gallery #back nav ul li a {
     text-decoration: none;
     color: white;
     font-family: "Inter Light";
     font-weight: bold;
     font-size: 14px;
-    
+
 }
 
-#gallery #back nav ul li:first-child a{
+#gallery #back nav ul li:first-child a {
     color: #f7c552;
-    
+
 }
 
-#gallery #back nav ul li{
+#gallery #back nav ul li {
     line-height: 35px;
 }
 
@@ -314,7 +320,7 @@ main #about .container button{
     width: 100%;
 }
 
-#founder #cards{
+#founder #cards {
     padding-top: 80px;
     width: 90%;
     display: flex;
@@ -323,7 +329,7 @@ main #about .container button{
     margin: 0 auto;
 }
 
-#founder #screen-card #card{
+#founder #screen-card #card {
     border-radius: 5px;
     width: 100%;
     height: 250px;
@@ -331,7 +337,7 @@ main #about .container button{
     background-color: white;
 }
 
-#founder #screen-card p{
+#founder #screen-card p {
     width: 70%;
     padding-top: 25px;
     font-family: "Inter Light";
@@ -342,7 +348,7 @@ main #about .container button{
     margin: 0 auto;
 }
 
-#founder #screen-card h2{
+#founder #screen-card h2 {
     margin-top: 20px;
     text-align: center;
     font-size: 14px;
@@ -350,7 +356,7 @@ main #about .container button{
     font-family: "Inter Light";
 }
 
-#founder #screen-card h3{
+#founder #screen-card h3 {
     color: white;
     margin-top: 10px;
     text-align: center;
@@ -366,36 +372,38 @@ main #about .container button{
     justify-content: space-between;
 }
 
-.circles div{
+.circles div {
     width: 10px;
     height: 10px;
     border-radius: 100%;
     background-color: rgba(255, 255, 255, 0.473);
 }
 
-.circles div:first-child{
+.circles div:first-child {
     background-color: white;
 }
 
-#articles{
+#articles {
     width: 100%;
     height: 1200px;
     background-image: url(../img/blog-bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    background-position-x: -1000px;
+    background-position-x: 0px;
 }
 
-#articles #block{
+#articles #block {
     padding-top: 80px;
     width: 100%;
     display: flex;
     flex-direction: column;
     text-align: center;
+    background-color: rgba(0, 0, 0, 0.342);
+    padding-bottom: 15px;
 }
 
-#articles #block h2{
+#articles #block h2 {
     font-family: "Inter Bold";
     color: white;
     font-size: 14px;
@@ -411,10 +419,30 @@ main #about .container button{
     margin-bottom: 20px;
 }
 
-#articles #block p{
+#articles #block p {
     font-family: "Inter Light";
     color: white;
-    font-size: 10px;
+    font-size: 15px;
     width: 75%;
     margin: 0 auto;
+    margin-bottom: 60px;
+}
+
+#articles #block button {
+    width: 80%;
+    height: 40px;
+    background-color: white;
+    border: none;
+    text-align: center;
+    font-family: "Inter Medium";
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+#articles #block #buttons button:hover{
+    cursor: pointer;
+}
+
+#articles #block #buttons button:first-child {
+    color: #f7c552 !important;
 }
