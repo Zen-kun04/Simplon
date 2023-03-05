@@ -548,6 +548,7 @@ main #about .container button {
 footer{
     width: 100%;
     height: 900px;
+    padding-top: 40px;
     background-color: #373a3c;
     display: flex;
     flex-direction: column;
@@ -601,8 +602,7 @@ footer #first p:last-child{
 }
 
 footer #first h2{
-    font-family: "Inter Bold";
-    font-weight: bold;
+    font-family: "Inter Regular";
     color: white;
     font-size: 20px;
 }
@@ -610,4 +610,23 @@ footer #first h2{
 footer #first h2::first-letter{
     color: #f7c552;
     font-size: 26px;
+}
+
+footer > div:not(#first) > h2{
+    margin-bottom: 30px;
+}
+
+footer > div:not(#first) > p{
+    font-family: "Inter Regular";
+    font-size: 12px;
+    color: white;
+    letter-spacing: 1px;
+    width: 70%;
+    margin: 0 auto;
+    line-height: 25px;
+}
+
+footer > div:not(#first) > p:last-child{
+    margin-top: 15px;
+    margin-bottom: 40px;
 }
