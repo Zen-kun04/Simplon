@@ -4,6 +4,7 @@
         width: 100%;
         justify-content: space-between;
         flex-wrap: wrap;
+        
     }
 
     main #about .container #box {
@@ -12,6 +13,7 @@
 
     main #about {
         height: 850px;
+        background-position-x: 100%;
     }
 
 }
@@ -28,24 +30,15 @@
 
 @media screen and (min-width: 1272px) {
     main #about {
+        margin: 0 auto;
         background-position-x: 100%;
     }
-}
-/* 
-@media screen and (min-width: 1094px) {
-    main #about {
-        background-position-x: -237px;
+
+    #box-one #round{
+        width: 700px;
     }
 }
 
-@media screen and (min-width: 1254px) {
-    main #about {
-        background-position-x: -173px;
-    }
+@media screen and (max-width: 442px) {
+    
 }
-
-@media screen and (min-width: 1477px) {
-    main #about {
-        
-    }
-} */
