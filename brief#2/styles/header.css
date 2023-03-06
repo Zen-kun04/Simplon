@@ -60,7 +60,6 @@ header>div>p::first-letter {
 
 header nav {
     display: flex;
-
     justify-content: flex-end;
 
 }
@@ -77,4 +76,15 @@ header div .material-symbols-outlined {
     width: 10%;
     margin-right: 15px;
     transition: all 500ms;
+}
+
+header nav li a{
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: "Inter Light";
+    font-size: 14px;
+}
+
+.header-text-menu-scroll{
+    color: black;   
 }

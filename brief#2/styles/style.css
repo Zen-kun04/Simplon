@@ -8,6 +8,11 @@
 @import url(main-contact.css);
 @import url(footer.css);
 
+@import url(media-queries/header.css);
+@import url(media-queries/main-about.css);
+@import url(media-queries/main-founders.css);
+@import url(media-queries/main-articles.css);
+
 
 main {
     width: 100%;

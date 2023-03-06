@@ -1,0 +1,51 @@
+@media screen and (min-width: 768px) {
+    main #about .container{
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    main #about .container #box {
+        width: 100%;
+    }
+
+    main #about {
+        height: 850px;
+    }
+
+}
+
+@media screen and (min-width: 992px) {
+    main #about .container {
+        flex-wrap: unset;
+    }
+
+    main #about {
+        height: 815px;
+    }
+}
+
+@media screen and (min-width: 1272px) {
+    main #about {
+        background-position-x: 100%;
+    }
+}
+/* 
+@media screen and (min-width: 1094px) {
+    main #about {
+        background-position-x: -237px;
+    }
+}
+
+@media screen and (min-width: 1254px) {
+    main #about {
+        background-position-x: -173px;
+    }
+}
+
+@media screen and (min-width: 1477px) {
+    main #about {
+        
+    }
+} */

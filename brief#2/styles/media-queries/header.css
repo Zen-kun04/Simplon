@@ -1,0 +1,21 @@
+@media screen and (min-width: 1048px) {
+    #span {
+        display: none;
+    }
+
+    header nav {
+        width: 100%;
+    }
+
+    header nav ul {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin-left: 100px;
+    }
+
+    header nav ul li:not(header nav li:last-child){
+        margin-right: 50px;
+    }
+
+}

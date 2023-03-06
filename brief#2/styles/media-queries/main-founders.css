@@ -1,0 +1,48 @@
+@media screen and (min-width: 291px) {
+    #founder #screen-card #card {
+        height: 220px;
+    }
+}
+
+@media screen and (min-width: 361px) {
+    #founder #screen-card #card {
+        height: 190px;
+    }
+}
+
+@media screen and (min-width: 444px) {
+    #founder #screen-card #card {
+        height: 170px;
+    }
+}
+
+@media screen and (min-width: 504px) {
+    #founder #screen-card #card {
+        height: 150px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    #founder #screen-card #card {
+        height: 110px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #founder #screen-card #card {
+        width: 50%;
+        height: 140px;
+    }
+}
+
+@media screen and (min-width: 1148px) {
+    #founder #screen-card #card {
+        height: 130px;
+    }
+}
+
+@media screen and (min-width: 1752px) {
+    #founder #screen-card #card {
+        height: 110px;
+    }
+}

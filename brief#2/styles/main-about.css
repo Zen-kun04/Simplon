@@ -19,11 +19,13 @@ main #about .container {
     padding-top: 55px;
 }
 
+
+
 main #about .container #box-one {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    width: 50%;
 }
 
 main #about .container #round {

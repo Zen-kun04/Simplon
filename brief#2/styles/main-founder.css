@@ -66,3 +66,7 @@
 .circles div:first-child {
     background-color: white;
 }
+
+#founder #cards #screen-card{
+    margin: 0 auto;
+}
