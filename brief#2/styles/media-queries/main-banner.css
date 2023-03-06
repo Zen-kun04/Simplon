@@ -1,0 +1,14 @@
+@media screen and (min-width: 585px) {
+    main #banner h1{
+        font-size: 34px;
+    }
+
+    main #banner p {
+        font-size: 18px;
+        width: 40%;
+    }
+
+    main #banner button {
+        width: 130px;
+    }
+}
