@@ -1,0 +1,61 @@
+main #banner{
+    height: 436px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main #banner {
+    background-position-x: -274px;
+    height: 600px;
+    background-attachment: fixed;
+    background-image: url(../img/banner_bg.jpg);
+}
+
+main #banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main #banner p {
+    margin-top: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    color: white;
+    font-family: "Inter Light";
+}
+
+#orange,
+#bleu {
+    font-family: "Inter Bold";
+}
+
+main #banner h1 {
+    font-family: "Inter Light";
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+
+
+#orange {
+    color: #d37d14;
+}
+
+#bleu {
+    color: #41b9cc;
+}
+
+main #banner button {
+    margin-top: 20px;
+    width: 115px;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+    text-transform: uppercase;
+    font-family: "Inter Light";
+    font-size: 12px;
+    font-weight: bold;
+}

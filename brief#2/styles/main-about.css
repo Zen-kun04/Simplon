@@ -1,0 +1,81 @@
+main #about {
+    height: 436px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main #about {
+    background-position-x: -383px;
+    background-position-y: 43px;
+    height: 1725px;
+    background-attachment: fixed;
+    background-image: url(../img/about-bg.jpg);
+}
+
+main #about .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 55px;
+}
+
+main #about .container #box-one {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+main #about .container #round {
+    width: 110px;
+    height: 110px;
+    background-color: #f7c552;
+    border-radius: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main #about .container #round img {
+    max-width: 100%;
+}
+
+main #about .container h2 {
+    margin-top: 45px;
+    font-family: 'Roboto', arial, sans-serif;
+    color: white;
+    font-size: 17px;
+    margin-bottom: 30px;
+}
+
+main #about .container #separator {
+
+    margin: 0 auto;
+    width: 95%;
+    height: 1px;
+    background-color: #888888;
+    margin-bottom: 20px;
+}
+
+main #about .container p {
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    font-family: "Inter Light";
+    margin-bottom: 20px;
+}
+
+main #about .container button {
+    letter-spacing: 1px;
+    font-size: 13px;
+    text-transform: uppercase;
+    background-color: #33c1cf;
+    font-weight: 500px;
+    padding: 12px 18px;
+    text-decoration: none;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    margin-bottom: 35px;
+}
