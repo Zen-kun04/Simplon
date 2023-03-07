@@ -5,5 +5,43 @@
 
     #gallery #wrapper img {
         width: 185px;
+        height: 132.93px;
+        margin-bottom: unset;
     }
+
+    #gallery #back {
+        margin-bottom: unset;
+    }
+}
+
+@media screen and (min-width: 965px) {
+    #gallery #wrapper img {
+        width: 252px;
+        height: 163.63px;
+    }
+}
+
+@media screen and (min-width: 1203px) {
+    #gallery #wrapper img{
+        width: 273px;
+    }
+}
+
+@media screen and (min-width: 1276px) {
+    #gallery #wrapper img {
+        width: 306px;
+    }
+}
+
+@media screen and (min-width: 1389px) {
+    #gallery #wrapper img{
+        width: 352px;
+    }
+}
+
+@media screen and (min-width: 1543px) {
+    #gallery #wrapper img {
+        width: 414px;
+    }
+    
 }
