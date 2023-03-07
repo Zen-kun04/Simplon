@@ -10,5 +10,7 @@
 
     main #banner button {
         width: 130px;
+        font-size: 14px;
+        padding: 12px;
     }
 }
