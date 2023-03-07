@@ -1,0 +1,9 @@
+@media screen and (min-width: 750px) {
+    #gallery {
+        flex-direction: row;
+    }
+
+    #gallery #wrapper img {
+        width: 185px;
+    }
+}
