@@ -20,7 +20,6 @@ function noms(){
     console.log(firstName, lastName);
 }
 
-
 // Exercice en plus juste pour test :)
 
 function salut(firstName: string, lastName: string){
