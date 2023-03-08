@@ -12,6 +12,7 @@
         width: 100%;
         align-items: center;
         margin-left: 100px;
+        background-color: unset;
     }
 
     header nav ul li:not(header nav li:last-child){

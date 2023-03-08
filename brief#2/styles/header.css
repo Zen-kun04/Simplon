@@ -58,17 +58,27 @@ header>div>p::first-letter {
     color: #d37d14;
 }
 
-header nav {
+#nav-menu {
     display: flex;
-    justify-content: flex-end;
-
+    justify-content: center;
+    text-align: center;
 }
 
-header nav ul {
+.show {
+    display: flex !important;
+}
+
+#nav-menu ul {
     list-style: none;
     /* display: flex;
     justify-content: flex-end; */
     display: none;
+    flex-direction: column;
+    /* background-color: white; */
+    width: 100%;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.929);
+    margin-top: 84px;
 
 }
 
@@ -78,13 +88,19 @@ header div .material-symbols-outlined {
     transition: all 500ms;
 }
 
-header nav li a{
+#nav-menu li {
+    padding: 10px;
+    border-bottom: 1px solid black;
+    padding: 15px;
+}
+
+#nav-menu li a {
     text-decoration: none;
-    color: #FFFFFF;
+    color: #000000;
     font-family: "Inter Light";
     font-size: 14px;
 }
 
-.header-text-menu-scroll{
-    color: black;   
+.header-text-menu-scroll {
+    color: black;
 }

@@ -27,19 +27,14 @@ window.addEventListener('scroll', () => {
 
 window.addEventListener('load', () =>{
     var menu_toggled = false;
-    var rotation = 0;
-    document.querySelector("#menu-toggler").addEventListener('click', () => {
+    document.querySelector("#span").addEventListener('click', () => {
         console.log("si");
-        rotation += 90;
         if (menu_toggled == false){
             menu_toggled = true;
             
-            document.getElementById("menu-toggler").style = "transform: rotate(" + rotation + "deg);"
-            document.getElementById("nav-menu").style = "display: flex;"
-            document.getElementById("nav-menu").style = "flex-wrap: wrap;"
+            document.getElementById("nav-menu").getElementsByTagName("ul")[0].classList.add("show");
         }else{
-            document.getElementById("menu-toggler").style = "transform: rotate(" + rotation + "deg);"
-            document.getElementById("nav-menu").style = "display: none;"
+            document.getElementById("nav-menu").getElementsByTagName("ul")[0].classList.remove("show");
             menu_toggled = false;
         }
     });
