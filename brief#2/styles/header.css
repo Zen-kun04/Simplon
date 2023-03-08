@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
+    transition: height 1s ease;
 }
 
 .header-background {
@@ -64,21 +65,22 @@ header>div>p::first-letter {
     text-align: center;
 }
 
-.show {
-    display: flex !important;
+#nav-menu > .show {
+    display: flex;
+    height: 245px;
 }
 
 #nav-menu ul {
     list-style: none;
-    /* display: flex;
-    justify-content: flex-end; */
     display: none;
     flex-direction: column;
-    /* background-color: white; */
     width: 100%;
     position: fixed;
     background-color: rgba(255, 255, 255, 0.929);
     margin-top: 84px;
+    overflow: hidden;
+    /* height: 245px; */
+    /* transition: height 1s ease; */
 
 }
 

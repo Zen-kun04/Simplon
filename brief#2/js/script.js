@@ -33,8 +33,17 @@ window.addEventListener('load', () =>{
             menu_toggled = true;
             
             document.getElementById("nav-menu").getElementsByTagName("ul")[0].classList.add("show");
+            setTimeout(() => {
+                document.getElementById("nav-menu").getElementsByTagName("ul")[0].style.height = '245px';
+              }, 10);
+
+              
         }else{
-            document.getElementById("nav-menu").getElementsByTagName("ul")[0].classList.remove("show");
+            document.getElementById("nav-menu").getElementsByTagName("ul")[0].style.height = '0px';
+            setTimeout(() => {
+                document.getElementById("nav-menu").getElementsByTagName("ul")[0].classList.remove("show");
+              }, 5000);
+            
             menu_toggled = false;
         }
     });
