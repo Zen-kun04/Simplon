@@ -34,7 +34,7 @@
         background-position-x: 100%;
     }
 
-    #box-one #round{
+    .box-one .round{
         width: 700px;
     }
 }

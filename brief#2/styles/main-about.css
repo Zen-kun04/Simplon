@@ -22,14 +22,14 @@ main #about .container {
 
 
 
-main #about .container #box-one {
+main #about .container .box-one {
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 50%;
 }
 
-main #about .container #round {
+main #about .container .round {
     width: 110px;
     height: 110px;
     background-color: #f7c552;
@@ -40,7 +40,7 @@ main #about .container #round {
     justify-content: center;
 }
 
-main #about .container #round img {
+main #about .container .round img {
     max-width: 100%;
 }
 
@@ -53,7 +53,7 @@ main #about .container h2 {
     text-align: center;
 }
 
-main #about .container #separator {
+main #about .container .separator {
 
     margin: 0 auto;
     width: 95%;
@@ -82,4 +82,8 @@ main #about .container button {
     color: white;
     margin-bottom: 35px;
     white-space: nowrap;
+}
+
+main #about .container button:hover{
+    cursor: pointer;
 }

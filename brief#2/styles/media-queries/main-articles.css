@@ -3,3 +3,9 @@
         height: 400px;
     }
 }
+
+@media screen and (min-width: 711px) {
+    #articles article{
+        height: 480px;
+    }
+}

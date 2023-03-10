@@ -62,3 +62,6 @@ main #banner button {
     font-weight: bold;
 }
 
+main #banner button:hover{
+    cursor: pointer;
+}

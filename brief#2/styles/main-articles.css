@@ -27,7 +27,7 @@
     margin-bottom: 20px;
 }
 
-#articles #block #separator {
+#articles #block .separator {
     width: 95%;
     height: 1px;
     background-color: #888888;

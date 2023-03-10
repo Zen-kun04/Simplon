@@ -4,7 +4,7 @@ window.addEventListener('scroll', () => {
     const header = document.querySelector("header");
     const headerTitle = document.querySelector("header div p");
     const headerMenuButton = document.getElementsByClassName("material-symbols-outlined")[0];
-    const headerMenuText = document.querySelectorAll("#nav-menu ul li a");
+    const headerMenuText = document.querySelectorAll("body > header > div > #nav-menu > ul > li > a");
     if(window.scrollY > 20){
         header.classList.add("header-background");
         headerTitle.classList.add("header-title");
@@ -28,21 +28,25 @@ window.addEventListener('scroll', () => {
 window.addEventListener('load', () =>{
     var menu_toggled = false;
     document.querySelector("#span").addEventListener('click', () => {
-        console.log("si");
+        console.log("sisas");
         if (menu_toggled == false){
             menu_toggled = true;
-            
+            document.getElementById("nav-menu").getElementsByTagName("ul")[0].style.height = "0px";
             document.getElementById("nav-menu").getElementsByTagName("ul")[0].classList.add("show");
+            document.getElementById("nav-menu").getElementsByTagName("ul")[0].style.height = "246px";
             setTimeout(() => {
-                document.getElementById("nav-menu").getElementsByTagName("ul")[0].style.height = '245px';
-              }, 10);
+                
+                
+                
+            }, 200);
+            
 
               
         }else{
-            document.getElementById("nav-menu").getElementsByTagName("ul")[0].style.height = '0px';
+            
             setTimeout(() => {
-                document.getElementById("nav-menu").getElementsByTagName("ul")[0].classList.remove("show");
-              }, 5000);
+                document.getElementById("nav-menu").getElementsByTagName("ul")[0].style.height = "0px";
+            }, 200);
             
             menu_toggled = false;
         }
