@@ -5,6 +5,7 @@
 ----------
 
 - [x] Mobile support
-- [ ] Desktop support
-- [ ] Hamburger Menu working
+- [x] Desktop support
+- [x] Hamburger Menu working
+- [x] Full responsive
 ----------
