@@ -62,8 +62,7 @@ Exercice 2:
 
 function _exercice_2_countries(){
     const countries: string[] = ["France", "Allemagne", "Italie", "Suisse", "Belgique"]
-    var sentence: string = ""
-    sentence = countries.join(', ')
+    var sentence: string = countries.join(', ')
     console.log(sentence)
     return sentence    
 }

@@ -1,0 +1,32 @@
+@import url(query.css);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: red;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+header > div:first-child{
+    display: flex;
+    justify-content: space-between;
+}
+
+header > div:last-child{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+header > div > #nav-menu > ul {
+    list-style: none;
+    text-align: center;
+}

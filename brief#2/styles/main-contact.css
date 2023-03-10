@@ -54,3 +54,9 @@
 #contact button:hover{
     cursor: pointer;
 }
+
+#contact > #contact-limiter {
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+}
