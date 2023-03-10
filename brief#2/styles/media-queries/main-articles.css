@@ -23,14 +23,16 @@
     }
 
     #articles {
-        padding-bottom: 250px;
         display: flex;
+        padding-bottom: 0px;
+        height: 100%;
     }
 
     #articles > #block {
         width: 50%;
         display: flex;
         justify-content: center;
+        margin-bottom: 0px;
     }
 
     
@@ -38,11 +40,11 @@
 
 @media screen and (min-width: 1095px) {
     #articles article{
-        height: 580px;
+        height: 420px;
     }
 
     #articles {
-        padding-bottom: 260px;
+        padding-bottom: 0px;
     }
 }
 

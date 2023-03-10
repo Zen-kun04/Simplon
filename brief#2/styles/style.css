@@ -14,6 +14,8 @@
 @import url(media-queries/main-gallery.css);
 @import url(media-queries/main-founders.css);
 @import url(media-queries/main-articles.css);
+@import url(media-queries/main-contact.css);
+@import url(media-queries/footer.css);
 
 
 main {
