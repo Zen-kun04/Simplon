@@ -10,5 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "parcel": "^2.8.3"
+  },
+  "devDependencies": {
+    "parcel-plugin-static-files-copy": "^2.6.0"
+  },
+  "staticFiles": {
+    "staticPath": "images",
+    "outputPath": "images"
   }
 }
