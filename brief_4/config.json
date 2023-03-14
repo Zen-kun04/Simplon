@@ -8,7 +8,7 @@
                 "2",
                 "Aucune réponse valide"
             ],
-            "correct:": 2
+            "correct": 2
         },
         {
             "title": "Quelle est la capitale de la France?",
@@ -18,7 +18,7 @@
                 "Portugal",
                 "Paris"
             ],
-            "correct:": 3
+            "correct": 3
         }
     ]
 }

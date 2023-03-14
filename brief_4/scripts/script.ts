@@ -21,8 +21,10 @@ const answerButtonList = document.getElementsByClassName("answer");
 const answerButtonListArray = Array.from(answerButtonList);
 const title = document.getElementById("title")!;
 let completed_questions: Object[] = [];
+
+let points = 0;
+
 function nextQuestion(){
-  console.log('si?');
   if(completed_questions.length === jsonQuestions.length){
     title.innerHTML = "T'as fini!"
     for(let i = 0; i < answerButtonListArray.length; i++){
@@ -31,6 +33,8 @@ function nextQuestion(){
       button.style.boxShadow = "unset";
       button.innerText = "";
     }
+    console.log(points);
+    
   }
   for(let question of jsonQuestions){
     
@@ -47,10 +51,19 @@ function nextQuestion(){
   }
 
 }
+
+function getCurrentQuestion(){
+  const queue: number = completed_questions.length;
+  return jsonQuestions[queue - 1];
+}
+
 nextQuestion();
-for(let answer of answerButtonList) {
+for(let i = 0; i < answerButtonListArray.length; i++) {
+  const answer = answerButtonListArray[i] as HTMLElement;
   answer.addEventListener('click', () => {
-    console.log("jaskjaksjas");
+    const currentQuestion = getCurrentQuestion();
+    
+    if(answerButtonListArray.indexOf(answer) === currentQuestion.correct) points++;
     nextQuestion();
   });
 }
