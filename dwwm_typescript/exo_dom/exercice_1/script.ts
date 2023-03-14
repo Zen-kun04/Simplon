@@ -46,14 +46,15 @@ for(let classes of exo_cible){
 }
 
 
-const exo_3: Element | null = document.getElementsByClassName("box")[2].getElementsByClassName("button")[0];
+const exo_3: Element | null = document.getElementsByClassName("box")[2]
+.getElementsByClassName("button")[0];
 exo_3.addEventListener('click', () => {
     console.log("mdr");
     
 })
 
 
-let points = 0;
+let points: number = 0;
 const exo_4_increment: Element | null = document.getElementsByClassName("incrementButton")[0];
 const exo_4_decrement: Element | null = document.getElementsByClassName("decrementButton")[0];
 exo_4_increment.addEventListener('click', () => {
