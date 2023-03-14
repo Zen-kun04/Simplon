@@ -42,6 +42,7 @@ function nextQuestion(){
         
       }
       completed_questions.push(question);
+      break;
     }
   }
 

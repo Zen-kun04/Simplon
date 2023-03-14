@@ -9,6 +9,16 @@
                 "Aucune réponse valide"
             ],
             "correct:": 2
+        },
+        {
+            "title": "Quelle est la capitale de la France?",
+            "answers": [
+                "Madrid",
+                "Lisbone",
+                "Portugal",
+                "Paris"
+            ],
+            "correct:": 3
         }
     ]
 }
