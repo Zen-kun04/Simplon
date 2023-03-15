@@ -1,3 +1,0 @@
-[Pour chaque produit du client] -> le scanner puis additioner le prix au total
-Multiplier le montant total par 0.20 ce qui fait 20% pour la TVA
-Le montant final sera la prix TTC

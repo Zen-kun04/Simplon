@@ -39,23 +39,51 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 60vh;
 }
 
 #red {
-    margin-top: 5vh;
     background-color: rgb(254, 65, 65);
+}
+
+#red-remove {
+    box-shadow: unset;
+    background-color: unset;
 }
 
 #purple {
     background-color: rgb(231, 50, 219);
 }
 
+#purple-remove {
+    box-shadow: unset;
+    background-color: unset;
+}
+
 #green {
     background-color: rgb(65, 254, 103);
 }
 
+#green-remove {
+    box-shadow: unset;
+    background-color: unset;
+}
+
 #blue {
     background-color: rgb(65, 245, 254);
+    
+}
+
+#blue-remove {
+    box-shadow: unset;
+    background-color: unset;
+}
+
+.answer:first-child{
+    margin-top: 5vh;
+}
+
+.answer:last-child{
     margin-bottom: 5vh;
 }
 

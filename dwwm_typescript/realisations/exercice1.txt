@@ -1,9 +1,0 @@
-Demander le ticket au client (prompt)
-1.S'il a le ticket ->
-Comparer le ticket avec la machine
-2.Si le chiffre est compris entre 1 et 5 ->
-Annoncer qu'il a gagné
-2.Sinon ->
-Annoncer qu'il a perdu et lui inviter à rejouer
-1.Sinon ->
-arrêter

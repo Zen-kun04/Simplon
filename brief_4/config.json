@@ -19,6 +19,14 @@
                 "Paris"
             ],
             "correct": 3
+        },
+        {
+            "title": "Qui suis-je?",
+            "answers": [
+                "Macron",
+                "Baguette"
+            ],
+            "correct": 1
         }
     ]
 }
