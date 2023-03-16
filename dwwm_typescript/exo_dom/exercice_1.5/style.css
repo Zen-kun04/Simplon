@@ -1,0 +1,48 @@
+button {
+    cursor: pointer;
+}
+
+.boxes_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    min-height: 200px;
+    padding: 20px;
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+
+.exo_title {
+    position: absolute;
+    top: 0;
+    left: 20px;
+}
+
+.square_empty {
+    width: 45px;
+    height: 45px;
+    border: 1px solid black;
+}
+
+.square_wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.green {
+    background-color: lightgreen;
+}
+
+.coral {
+    background-color: lightcoral;
+}
