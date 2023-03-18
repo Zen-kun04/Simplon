@@ -33,6 +33,7 @@ main {
 #question > #content {
     background-color: rgba(255, 255, 255, 0.379);
     border-radius: 0px 0px 10px 10px;
+    height: 60vh;
 }
 
 #question > #content > #answers {
@@ -79,6 +80,7 @@ main {
     background-color: unset;
 }
 
+
 .answer:first-child{
     margin-top: 5vh;
 }
@@ -96,6 +98,10 @@ main {
     align-items: center;
 }
 
+.answer:hover {
+    cursor: pointer;
+}
+
 .answer:not(#blue) {
     margin-bottom: 2vh;
 }
@@ -110,4 +116,55 @@ main {
 
 #nice {
     color: rgb(82, 241, 180);
+}
+
+#bad, #nice {
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.errorMessage{
+    color: rgb(255, 0, 0);
+    font-size: 16px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 15px;
+    width: 340px;
+    text-align: center;
+}
+
+.answer#play{
+    transition: all 500ms;
+}
+
+.answer#play:hover {
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#answerResultParagraph{
+    font-weight: bold;
+    font-size: 32px;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+#answerResultParagraphNextQuestion{
+    font-size: 28px;
+}
+
+#answerResultParagraphSeconds{
+    font-size: 34px;
+}
+
+.secondsGreen {
+    color: rgb(55, 197, 55);
+}
+
+.secondsOrange {
+    color: rgb(250, 165, 17);
+}
+
+.secondsRed {
+    color: rgb(254, 0, 0);
 }
