@@ -15,6 +15,9 @@ interface Question {
 let username: string = "";
 let questionIndex: number = 0;
 let points: number = 0;
+var timeoutQuestion;
+let questionAnswered = false;
+const segundosParaContestar = 5;
 const questionsJson: Question[] = configFile.questions;
 const containerTitle: Node | undefined = document.getElementById("title")?.cloneNode(true);
 function toggleTitle(toggle: boolean){
@@ -341,6 +344,8 @@ function resetEverything(){
 
 
 function callbackAnswer(event: Event, ...args: any){
+    questionAnswered = true;
+    clearTimeout(timeoutQuestion);
     const button: HTMLElement = args[0];
     const buttonText: string | null = button.textContent;
     
@@ -363,6 +368,7 @@ function callbackAnswer(event: Event, ...args: any){
 }
 
 function loadQuestion(question: Question){
+    questionAnswered = false;
     setTitle(question.title);
     let colors = ["red", "purple", "green", "blue"];
     let answerList: string[] = question.answers;
@@ -373,6 +379,12 @@ function loadQuestion(question: Question){
         createCustomButton(answerList[amount], null, 'answer', colors[0], callbackAnswer, "[button]");
         colors.shift();
     }
+    timeoutQuestion = setTimeout(function(){
+        if(!questionAnswered){
+            showPartialResultPage(false);
+        }
+    }, segundosParaContestar * 1000);
+
 }
 
 function startQuestions(){
