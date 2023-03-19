@@ -17,12 +17,11 @@ let questionIndex: number = 0;
 let points: number = 0;
 var timeoutQuestion;
 let questionAnswered = false;
+
 const segundosParaContestar = 5;
 const questionsJson: Question[] = configFile.questions;
 const containerTitle: Node | undefined = document.getElementById("title")?.cloneNode(true);
-function toggleTitle(toggle: boolean){
-    console.log(toggle);
-    
+function toggleTitle(toggle: boolean){    
     if(toggle){
         // Enable title
         const container: HTMLElement | null = document.getElementById("question");
@@ -157,7 +156,6 @@ function hideErrorMessages(){
 }
 
 function mainButtonStart(event: Event, ...args): void{
-    console.log("si");
     let buttonB: HTMLElement | null = null;
     
     
@@ -209,10 +207,8 @@ function shuffle<T>(array: T[]): T[] {
 
 function isGoodAnswer(answer: string){
     const question: Question = getCurrentQuestion();
-    console.log(questionsJson[questionsJson.indexOf(question)]);
     
     const goodAnswer: string = question.answers[question.correct]
-    console.log(answer, goodAnswer);
     
     return answer === goodAnswer;
 }
@@ -233,12 +229,12 @@ function showPartialResultPage(result: boolean){
     Result: true = Good!
     Result: false = Bad
     */
-
+    const answersContainer: HTMLElement | null = document.getElementById("answers");
     // Remove everything
     hideCustomButtons();
     toggleTitle(false);
     /////////////////////
-    const answersContainer: HTMLElement | null = document.getElementById("answers");
+    
     let image: HTMLImageElement | null = null;
     let nextSeconds = 5;
     let nextSecondsParagraph: HTMLElement | null = null;
@@ -328,6 +324,7 @@ function hidePartialResultPage(): void {
     const answersContainer: HTMLElement | null = document.getElementById("answers");
     if (answersContainer) {
         while (answersContainer.firstChild) {
+            
             answersContainer.removeChild(answersContainer.firstChild);
         }
     }
@@ -350,13 +347,11 @@ function callbackAnswer(event: Event, ...args: any){
     const buttonText: string | null = button.textContent;
     
     if(buttonText && isGoodAnswer(buttonText)){
-        console.log("bien hecho!");
         showPartialResultPage(true);
         // Add points
         points++;
         
     }else{
-        console.log("que pena :(");
         showPartialResultPage(false);
     }
     
@@ -367,11 +362,23 @@ function callbackAnswer(event: Event, ...args: any){
     
 }
 
+function showProgress(){
+
+}
+
+function hideProgress(){
+
+}
+
 function loadQuestion(question: Question){
     questionAnswered = false;
     setTitle(question.title);
     let colors = ["red", "purple", "green", "blue"];
     let answerList: string[] = question.answers;
+    const answersContainer: HTMLElement | null = document.getElementById("answers");
+    if(answersContainer){
+
+    }
     if(question.random){
         answerList = shuffle(getCurrentQuestion().answers)
     }
@@ -379,6 +386,8 @@ function loadQuestion(question: Question){
         createCustomButton(answerList[amount], null, 'answer', colors[0], callbackAnswer, "[button]");
         colors.shift();
     }
+    
+    
     timeoutQuestion = setTimeout(function(){
         if(!questionAnswered){
             showPartialResultPage(false);
@@ -404,6 +413,7 @@ function startQuestions(){
     /////////////////////////////////////////
 
     toggleTitle(true);
+    
     loadQuestion(questionsJson[questionIndex]);
     
 
@@ -415,6 +425,7 @@ function main(){
     // let time = 10;
     toggleTitle(false);
     const answersContainer: HTMLElement | null = document.getElementById("answers");
+    
     if(answersContainer){
         const customParagraph: HTMLElement = createCustomElement("p", "Username:", null, "usernameParagraph", answersContainer, 0);
         const customInput: HTMLElement = createCustomElement("input", null, null, "inputUsername", answersContainer, 1);
