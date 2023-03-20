@@ -19,6 +19,7 @@ main {
 
 #question {
     width: 80%;
+    padding-bottom: 20px;
 }
 
 #question > #title {
@@ -178,13 +179,24 @@ main {
 
 #questions-progress-paragragh{
     color: white;
-    
 }
 
 #div-top{
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-top: -10%;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
+}
+
+#progressbar-timer {
+    width: 50%;
+    height: 5vh;
+    border: 1px solid white;
+}
+
+#progressbar-timer-in {
+    background-color: rgb(97, 248, 47);
+    width: 0%;
+    height: 5vh;
+    transition: all 5s linear;
 }

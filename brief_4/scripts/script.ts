@@ -37,6 +37,8 @@ let user_data_localstorage: UserData | null = null;
 if(localstorage_data)
 user_data_localstorage = JSON.parse(localstorage_data);
 
+var progressTimer: any | null = null;
+
 let username: string | null = null;
 if(user_data_localstorage)
 username = user_data_localstorage.username;
@@ -267,6 +269,14 @@ function hideCustomButtons(){
     }
 }
 
+function hide_div_top(){
+    hideQuestionProgress();
+    hideLogoutButton();
+    const div_top: HTMLElement | null = document.getElementById("div-top");
+    if(div_top)
+    div_top.remove();
+}
+
 function showPartialResultPage(result: boolean){
     /*
     Result: true = Good!
@@ -275,13 +285,14 @@ function showPartialResultPage(result: boolean){
     const answersContainer: HTMLElement | null = document.getElementById("answers");
     // Remove everything
     hideCustomButtons();
-    hideLogoutButton();
-    hideQuestionProgress();
+    hide_div_top();
+    hideTimerProgress();
+    
     toggleTitle(false);
     /////////////////////
     
     let image: HTMLImageElement | null = null;
-    let nextSeconds = 5;
+    let nextSeconds: number = 5;
     let nextSecondsParagraph: HTMLElement | null = null;
 
     let secondsParagraph: HTMLElement | null = null
@@ -336,6 +347,7 @@ function showPartialResultPage(result: boolean){
 
 function showFinalResultPage(){
     // Display the final results of player
+    hideTimerProgress();
     toggleTitle(false);
     const answersContainer: HTMLElement | null = document.getElementById("answers");
     let resultImage: HTMLImageElement | null = null;
@@ -381,10 +393,12 @@ function hidePartialResultPage(): void {
 
 function resetEverything(){
     toggleTitle(false);
+    hideTimerProgress();
+    hideQuestionProgress();
     hidePartialResultPage();
     hideErrorMessages();
     hideCustomButtons();
-    hideLogoutButton();
+    hide_div_top();
     clearTimeout(timeoutQuestion);
     points = 0;
     questionIndex = 0;
@@ -430,11 +444,25 @@ function hideQuestionProgress(){
 }
 
 function showTimerProgress(){
-
+    const main_div: HTMLElement | null = document.getElementsByTagName("main")[0];
+    if(main_div){
+        const bar: HTMLElement = document.createElement("div");
+        bar.id = "progressbar-timer"
+        main_div.appendChild(bar);
+        const internal_bar: HTMLElement = document.createElement("div");
+        internal_bar.id = "progressbar-timer-in";
+        bar.appendChild(internal_bar);
+        setTimeout(() => {
+            internal_bar.style.width = "100%";
+        }, 100);
+    }
 }
 
-function hideTimerProgress(){
 
+function hideTimerProgress(){
+    const bar: HTMLElement | null = document.getElementById("progressbar-timer");
+    if(bar)
+    bar.remove();
 }
 
 function logoutCallback(){
@@ -466,6 +494,7 @@ function hideLogoutButton(){
 }
 
 function loadQuestion(question: Question){
+    showTimerProgress();
     showLogoutButton();
     showQuestionProgress();
     questionAnswered = false;
@@ -483,6 +512,7 @@ function loadQuestion(question: Question){
     
     
     timeoutQuestion = setTimeout(function(){
+        
         if(!questionAnswered){
             showPartialResultPage(false);
         }
