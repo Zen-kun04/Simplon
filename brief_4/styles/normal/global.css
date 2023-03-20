@@ -169,3 +169,22 @@ main {
     color: rgb(254, 0, 0);
 }
 
+#logout-button {
+    width: 18%;
+    height: 8vh;
+    box-shadow: 4px 4px 4px;
+    text-align: center;
+}
+
+#questions-progress-paragragh{
+    color: white;
+    
+}
+
+#div-top{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -10%;
+    margin-bottom: 10%;
+}

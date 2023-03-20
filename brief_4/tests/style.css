@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    width: 88px;
+}
+
+.inner {
+    width: 0px;
+    border-bottom: 1px solid black;
+    height: 0px;
+    margin: 0 auto;
+    transition: all 500ms;
+}
+
+div:hover .inner{
+    width: 88px;
+}
+
+div:hover {
+    cursor: pointer;
+}

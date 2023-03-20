@@ -275,6 +275,8 @@ function showPartialResultPage(result: boolean){
     const answersContainer: HTMLElement | null = document.getElementById("answers");
     // Remove everything
     hideCustomButtons();
+    hideLogoutButton();
+    hideQuestionProgress();
     toggleTitle(false);
     /////////////////////
     
@@ -382,6 +384,7 @@ function resetEverything(){
     hidePartialResultPage();
     hideErrorMessages();
     hideCustomButtons();
+    hideLogoutButton();
     clearTimeout(timeoutQuestion);
     points = 0;
     questionIndex = 0;
@@ -410,35 +413,61 @@ function callbackAnswer(event: Event, ...args: any){
     
 }
 
-function showProgress(){
+function showQuestionProgress(){
+    const div: HTMLElement | null = document.getElementById("div-top");
+    if(div){
+        const paragraphQuestionProgress: HTMLElement = document.createElement("p");
+        paragraphQuestionProgress.id = "questions-progress-paragragh";
+        div.insertBefore(paragraphQuestionProgress, div.firstChild);
+        paragraphQuestionProgress.textContent = `${questionIndex+1}/${questionsJson.length}`;
+    }
+}
+
+function hideQuestionProgress(){
+    const paragraphQuestionProgress: HTMLElement | null = document.getElementById("questions-progress-paragragh");
+    if(paragraphQuestionProgress)
+    paragraphQuestionProgress.remove();
+}
+
+function showTimerProgress(){
 
 }
 
-function hideProgress(){
+function hideTimerProgress(){
 
 }
 
 function logoutCallback(){
     localStorage.clear();
+    username = "";
     resetEverything();
     main();
     
 }
 
 function showLogoutButton(){
+    const div: HTMLElement = document.createElement("div");
+    div.id = "div-top";
     const button: HTMLElement = document.createElement("div");
-    button.classList.add("answer");
+    button.id = "logout-button";
     button.textContent = "Change username";
     button.style.backgroundColor = "rgb(250, 207, 90)";
     const main_tag: HTMLElement = document.getElementsByTagName("main")[0];
-    
-    main_tag.insertBefore(button, main_tag.firstChild);
+    div.appendChild(button);
+    main_tag.insertBefore(div, main_tag.firstChild);
     
     button.addEventListener('click', logoutCallback);
 }
 
+function hideLogoutButton(){
+    const button: HTMLElement | null = document.getElementById("logout-button");
+    if(button)
+    button.remove();
+}
+
 function loadQuestion(question: Question){
     showLogoutButton();
+    showQuestionProgress();
     questionAnswered = false;
     setTitle(question.title);
     let colors = ["red", "purple", "green", "blue"];
@@ -488,6 +517,7 @@ function startQuestions(){
 
 function main(){
     // let time = 10;
+    hideLogoutButton();
     toggleTitle(false);
     const answersContainer: HTMLElement | null = document.getElementById("answers");
     
