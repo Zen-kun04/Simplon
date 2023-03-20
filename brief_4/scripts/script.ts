@@ -12,7 +12,34 @@ interface Question {
     random: boolean
 }
 
-let username: string = "";
+interface UserData {
+    username: string | null,
+    total_points: number,
+    total_questions: number,
+    total_good_questions: number,
+    total_bad_questions: number,
+    total_rounds: number,
+    middle_points: number
+}
+
+const user_data: UserData = {
+    username: null,
+    total_points: 0,
+    total_questions: 0,
+    total_good_questions: 0,
+    total_bad_questions: 0,
+    total_rounds: 0,
+    middle_points: 0
+}
+
+let localstorage_data = window.localStorage.getItem("userData");
+let user_data_localstorage: UserData | null = null;
+if(localstorage_data)
+user_data_localstorage = JSON.parse(localstorage_data);
+
+let username: string | null = null;
+if(user_data_localstorage)
+username = user_data_localstorage.username;
 let questionIndex: number = 0;
 let points: number = 0;
 var timeoutQuestion;
@@ -58,7 +85,7 @@ function setTitle(titleContent: string){
     }
 }
 
-function createCustomButton(text: string | null, bgcolor: string | null, className: string | null, idName: string | null, callback: EventListener | null, ...args){
+function createCustomButton(text: string | null, bgcolor: string | null, className: string | null, idName: string | null, callback: EventListener | null, ...args): HTMLElement{
     const customB: HTMLElement | null = document.createElement("div")
     if(text)
     customB.textContent = text;
@@ -84,7 +111,7 @@ function createCustomButton(text: string | null, bgcolor: string | null, classNa
     });
     if(answersContainer)
     answersContainer.appendChild(customB);
-
+    return customB;
 }
 
 function createCustomElement(tag: string, text: string | null, className: string | null, idName: string | null, to: Element, position: number){
@@ -175,15 +202,31 @@ function mainButtonStart(event: Event, ...args): void{
                         err = createErrorMessage("Erreur: Il faut que tu ajoutes un nom d'utilisateur!")
                     }else{
                         hideErrorMessages();
-                        username = customInput.value.trim();
+                        user_data.username = customInput.value.trim();
+                        localStorage.setItem("userData", JSON.stringify(user_data));
+                        localstorage_data = localStorage.getItem("userData");
+                        if(localstorage_data)
+                        username = JSON.parse(localstorage_data).username;
+                        
+                        
                     }
                     break;
             }
-            if(username.trim() !== "")
-            startQuestions();
+            if(username && username.trim() !== "")
+                startQuestions();
+            
+            
+            
         }
     }
     
+}
+
+function isLogged(): boolean {
+    localstorage_data = localStorage.getItem("userData");
+    if(localstorage_data)
+        return JSON.parse(localstorage_data).username.trim() !== "";
+    return false;
 }
 
 function shuffle<T>(array: T[]): T[] {
@@ -317,7 +360,10 @@ function showFinalResultPage(){
 
 function finalResultButtonListener(event: Event){
     resetEverything();
-    main();
+    if(username && username.trim() !== ""){
+        startQuestions();
+    }else
+        main();
 }
 
 function hidePartialResultPage(): void {
@@ -335,8 +381,10 @@ function resetEverything(){
     toggleTitle(false);
     hidePartialResultPage();
     hideErrorMessages();
+    hideCustomButtons();
+    clearTimeout(timeoutQuestion);
     points = 0;
-    username = "";
+    questionIndex = 0;
 }
 
 
@@ -370,15 +418,32 @@ function hideProgress(){
 
 }
 
+function logoutCallback(){
+    localStorage.clear();
+    resetEverything();
+    main();
+    
+}
+
+function showLogoutButton(){
+    const button: HTMLElement = document.createElement("div");
+    button.classList.add("answer");
+    button.textContent = "Change username";
+    button.style.backgroundColor = "rgb(250, 207, 90)";
+    const main_tag: HTMLElement = document.getElementsByTagName("main")[0];
+    
+    main_tag.insertBefore(button, main_tag.firstChild);
+    
+    button.addEventListener('click', logoutCallback);
+}
+
 function loadQuestion(question: Question){
+    showLogoutButton();
     questionAnswered = false;
     setTitle(question.title);
     let colors = ["red", "purple", "green", "blue"];
     let answerList: string[] = question.answers;
-    const answersContainer: HTMLElement | null = document.getElementById("answers");
-    if(answersContainer){
 
-    }
     if(question.random){
         answerList = shuffle(getCurrentQuestion().answers)
     }
@@ -452,4 +517,10 @@ function main(){
     // }, 1000)
 }
 
-main()
+if(username && username.trim() !== ""){
+    toggleTitle(false);
+    startQuestions();
+}
+    
+else
+main();
