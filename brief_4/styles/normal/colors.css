@@ -1,0 +1,62 @@
+
+#red {
+    background-color: rgb(254, 65, 65);
+}
+
+#red-remove {
+    box-shadow: unset;
+    background-color: unset;
+}
+
+#purple {
+    background-color: rgb(231, 50, 219);
+}
+
+#purple-remove {
+    box-shadow: unset;
+    background-color: unset;
+}
+
+#green {
+    background-color: rgb(65, 254, 103);
+}
+
+#green-remove {
+    box-shadow: unset;
+    background-color: unset;
+}
+
+#blue {
+    background-color: rgb(65, 245, 254);
+    
+}
+
+#blue-remove {
+    box-shadow: unset;
+    background-color: unset;
+}
+
+#bad {
+    color: rgb(248, 81, 81);
+}
+
+#nice {
+    color: rgb(82, 241, 180);
+}
+
+#bad, #nice {
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.secondsGreen {
+    color: rgb(55, 197, 55);
+}
+
+.secondsOrange {
+    color: rgb(250, 165, 17);
+}
+
+.secondsRed {
+    color: rgb(254, 0, 0);
+}

@@ -1,4 +1,5 @@
 import configFile from '../config.json'
+
 const goodAnswerImage: string = require("../images/confirm.png");
 const badAnswerImage: string = require("../images/cancelar.png");
 const finalGoodAnswerImage: string = require("../images/comprobado.png");
@@ -46,8 +47,8 @@ let questionIndex: number = 0;
 let points: number = 0;
 var timeoutQuestion;
 let questionAnswered = false;
-
-const segundosParaContestar = 5;
+let normalMediaQueryHTML: string;
+const segundosParaContestar = 50;
 const questionsJson: Question[] = configFile.questions;
 const containerTitle: Node | undefined = document.getElementById("title")?.cloneNode(true);
 function toggleTitle(toggle: boolean){    
@@ -186,8 +187,6 @@ function hideErrorMessages(){
 
 function mainButtonStart(event: Event, ...args): void{
     let buttonB: HTMLElement | null = null;
-    
-    
     if(args)
     
     for(let a of args){
@@ -305,6 +304,9 @@ function showPartialResultPage(result: boolean){
         image.style.width = "20vh";
         image.style.marginTop = "4vh";
     }
+    if(window.innerWidth >= 612){  
+        column();
+    }
     if(answersContainer){
         createCustomElement("p", result ? "Bravo!" : "Dommage!", null, 'answerResultParagraph', answersContainer, 1);
         createCustomElement("p", result ? "+1" : "-1", null, result ? "nice" : "bad", answersContainer, 1);
@@ -329,7 +331,6 @@ function showPartialResultPage(result: boolean){
         }, 1000);
         secondsParagraph = createCustomElement("p", "secondes", null, "answerResultParagraphNextQuestion", answersContainer, 1);
 
-
         function afterInterval(){
             questionIndex++;
             hidePartialResultPage();
@@ -340,7 +341,6 @@ function showPartialResultPage(result: boolean){
             }
             else
             showFinalResultPage();
-            
         }
     }
 }
@@ -353,6 +353,9 @@ function showFinalResultPage(){
     let resultImage: HTMLImageElement | null = null;
     let resultText: HTMLElement | null = null;
     let resultPoints: HTMLElement | null = null;
+    if(window.innerWidth >= 612){
+        column();
+    }
     if(answersContainer){
         resultImage = createCustomImage(points >= questionsJson.length / 2 ? finalGoodAnswerImage : finalBadAnswerImage, null, null, answersContainer, 1);
         if(resultImage){
@@ -369,6 +372,7 @@ function showFinalResultPage(){
         ,null, "answerResultParagraph", answersContainer, 1);
         resultPoints = createCustomElement("p", `${points}/${questionsJson.length}`, null, "answerResultParagraphSeconds", answersContainer, 1);
         createCustomButton("Restart", "rgb(55, 197, 55)", "answer", null, finalResultButtonListener);
+        createCustomButton("My Stats", "orange", "answer", "play", myStatsCallback);
     }
 }
 
@@ -418,13 +422,7 @@ function callbackAnswer(event: Event, ...args: any){
         
     }else{
         showPartialResultPage(false);
-    }
-    
-    // shuffle(getCurrentQuestion().answers)
-    
-
-    
-    
+    }  
 }
 
 function showQuestionProgress(){
@@ -451,6 +449,7 @@ function showTimerProgress(){
         main_div.appendChild(bar);
         const internal_bar: HTMLElement = document.createElement("div");
         internal_bar.id = "progressbar-timer-in";
+        internal_bar.style.transition = `all ${segundosParaContestar}s linear`;
         bar.appendChild(internal_bar);
         setTimeout(() => {
             internal_bar.style.width = "100%";
@@ -494,6 +493,7 @@ function hideLogoutButton(){
 }
 
 function loadQuestion(question: Question){
+    row();
     showTimerProgress();
     showLogoutButton();
     showQuestionProgress();
@@ -539,14 +539,54 @@ function startQuestions(){
     toggleTitle(true);
     
     loadQuestion(questionsJson[questionIndex]);
-    
+}
 
+function column(){
+    let style: HTMLCollectionOf<HTMLElement> | HTMLElement = document.getElementsByTagName("style");
+    if(style[0]){
+        style = style[0];
+    }else{
+        style = document.createElement('style');
+        document.head.appendChild(style);
+    }
+    style.innerHTML = `
+        @media screen and (min-width: 612px) {
+            main > #question > #content > #answers {
+                flex-direction: column !important;
+                flex-wrap: nowrap;
+                width: 100%;
+            }
+        }
+    `;
+}
 
+function row(){
+    let style: HTMLCollectionOf<HTMLElement> | HTMLElement = document.getElementsByTagName("style");
+    if(style[0]){
+        style = style[0];
+    }else{
+        
+        style = document.createElement('style');
+        document.head.appendChild(style);
+    }
+    style.innerHTML = `
+    @media screen and (min-width: 612px) {
+        main > #question > #content > #answers {
+            flex-direction: row !important;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+    }
+`;
+}
+
+function myStatsCallback(){
+    console.log("klk");
     
 }
 
 function main(){
-    // let time = 10;
+    column();
     hideLogoutButton();
     toggleTitle(false);
     const answersContainer: HTMLElement | null = document.getElementById("answers");
@@ -560,22 +600,9 @@ function main(){
     }
     
     createCustomButton("Let's play!", "red", "answer", "play", mainButtonStart, "[button]", "green", "[check_username]");
-    
-    
-    
-    // var interval = setInterval(function(){
-    //     if(time % 2 === 0){
-    //         toggleTitle(true);
-            
-    //     }else{
-    //         toggleTitle(false);
-    //     }
-    //     if(time === 0){
-    //         clearInterval(interval)
-    //     }
-    //     time--;
-    // }, 1000)
 }
+
+
 
 if(username && username.trim() !== ""){
     toggleTitle(false);
@@ -584,3 +611,4 @@ if(username && username.trim() !== ""){
     
 else
 main();
+

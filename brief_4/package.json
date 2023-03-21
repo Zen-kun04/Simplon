@@ -9,9 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "parcel": "^2.8.3"
+    "aws-sdk": "^2.1339.0",
+    "nock": "^13.3.0",
+    "parcel": "^2.8.3",
+    "sqlite3": "^5.1.6"
   },
   "devDependencies": {
+    "@types/sqlite3": "^3.1.8",
     "parcel-plugin-static-files-copy": "^2.6.0"
   },
   "staticFiles": {
