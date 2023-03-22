@@ -48,7 +48,7 @@ let points: number = 0;
 var timeoutQuestion;
 let questionAnswered = false;
 let normalMediaQueryHTML: string;
-const segundosParaContestar = 50;
+const segundosParaContestar = 10;
 const questionsJson: Question[] = configFile.questions;
 const containerTitle: Node | undefined = document.getElementById("title")?.cloneNode(true);
 function toggleTitle(toggle: boolean){    
@@ -590,7 +590,23 @@ function main(){
     hideLogoutButton();
     toggleTitle(false);
     const answersContainer: HTMLElement | null = document.getElementById("answers");
-    
+    let style: HTMLCollectionOf<HTMLElement> | HTMLElement = document.getElementsByTagName("style");
+    if(style[0]){
+        style = style[0];
+    }else{
+        style = document.createElement('style');
+        document.head.appendChild(style);
+    }
+    style.innerHTML = `
+        @media screen and (min-width: 612px) {
+            main > #question > #content > #answers {
+                flex-direction: column !important;
+                flex-wrap: nowrap;
+                justify-content: center;
+                width: 100%;
+            }
+        }
+    `;
     if(answersContainer){
         const customParagraph: HTMLElement = createCustomElement("p", "Username:", null, "usernameParagraph", answersContainer, 0);
         const customInput: HTMLElement = createCustomElement("input", null, null, "inputUsername", answersContainer, 1);
@@ -604,11 +620,35 @@ function main(){
 
 
 
-if(username && username.trim() !== ""){
-    toggleTitle(false);
-    startQuestions();
-}
+// if(username && username.trim() !== ""){
+//     toggleTitle(false);
+//     startQuestions();
+// }
     
-else
-main();
+// else
+// main();
+const testData = {
+    username: "test",
+    total_points: 0,
+    total_questions: 0,
+    total_good_questions: 0,
+    total_bad_questions: 0,
+    total_rounds: 0,
+    middle_points: 0
+}
 
+
+
+
+let f = fetch("http://127.0.0.1:5000/api/create-user-data", {
+    method: "POST",
+    body: JSON.stringify(testData)
+})
+
+.then(response => response)
+.then(data => {
+    console.log(data.status);
+    console.log(data.text());
+    
+    
+})
