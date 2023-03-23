@@ -3,9 +3,7 @@ import Body from './Body';
 class Monster extends Body {
     // Added the constructor to be able to modify some Body variables ;)
     constructor() {
-        super();
-        this.eyes = 5;
-        this.arms = 6;
+        super(5, 6);
     }
     
     getEyes(): number {

@@ -1,7 +1,11 @@
 class Body{
-    eyes: number = 2;
-    arms: number = 2;
-
+    
+    eyes: number;
+    arms: number;
+    constructor(eyes: number, arms: number){
+        this.eyes = eyes;
+        this.arms = arms;
+    }
     getEyes(): number {
         return this.eyes;
     }
