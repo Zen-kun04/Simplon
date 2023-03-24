@@ -2,8 +2,8 @@
     margin-top: 5vh;
 }
 
-.answer:last-child{
-    margin-bottom: 5vh;
+#answers > .answer:last-child{
+    margin-bottom: 2vh;
 }
 
 .answer {

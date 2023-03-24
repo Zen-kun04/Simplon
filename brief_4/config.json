@@ -40,5 +40,9 @@
             "correct": 0,
             "random": true
         }
-    ]
+    ],
+    "sensibilisation": {
+        "title": "Pourquoi apprendre?",
+        "description": "J'sais pas quoi dire mdr"
+    }
 }
