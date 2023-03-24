@@ -4,6 +4,7 @@ const goodAnswerImage: string = require("../images/confirm.png");
 const badAnswerImage: string = require("../images/cancelar.png");
 const finalGoodAnswerImage: string = require("../images/comprobado.png");
 const finalBadAnswerImage: string = require("../images/llevar.png");
+const papyrus: string = require("../images/papyrus-dark.webp");
 
 
 interface Question {
@@ -20,7 +21,8 @@ interface UserData {
     total_good_questions: number,
     total_bad_questions: number,
     total_rounds: number,
-    middle_points: number
+    middle_points: number,
+    best_score: number
 }
 
 const user_data: UserData = {
@@ -30,7 +32,8 @@ const user_data: UserData = {
     total_good_questions: 0,
     total_bad_questions: 0,
     total_rounds: 0,
-    middle_points: 0
+    middle_points: 0,
+    best_score: 0
 }
 
 let localstorage_data = window.localStorage.getItem("userData");
@@ -202,21 +205,31 @@ function mainButtonStart(event: Event, ...args): void{
                     if(customInput && customInput.value === ""){
                         err = createErrorMessage("Erreur: Il faut que tu ajoutes un nom d'utilisateur!")
                     }else{
+                        
                         hideErrorMessages();
                         user_data.username = customInput.value.trim();
                         localStorage.setItem("userData", JSON.stringify(user_data));
-                        localstorage_data = localStorage.getItem("userData");
+                        localstorage_data = JSON.stringify(user_data);
                         if(localstorage_data)
                         username = JSON.parse(localstorage_data).username;
+                        const creatingUserData: UserData = {
+                            username: username,
+                            total_points: 0,
+                            total_questions: 0,
+                            total_good_questions: 0,
+                            total_bad_questions: 0,
+                            total_rounds: 0,
+                            middle_points: 0,
+                            best_score: 0
+                        }
+                        createUser(creatingUserData);
                         
                         
                     }
                     break;
             }
-            if(username && username.trim() !== "")
+            if(isLogged())
                 startQuestions();
-            
-            
             
         }
     }
@@ -224,11 +237,19 @@ function mainButtonStart(event: Event, ...args): void{
 }
 
 function isLogged(): boolean {
-    localstorage_data = localStorage.getItem("userData");
-    if(localstorage_data)
-        return JSON.parse(localstorage_data).username.trim() !== "";
+    const localstorage_data = localStorage.getItem("userData");
+    if (localstorage_data) {
+      username = JSON.parse(localstorage_data).username.trim();
+      if (username !== "") {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", `http://127.0.0.1:5000/api/get/${username}/all`, false); // `false` para hacer una llamada síncrona
+        xhr.send();
+        return xhr.status === 200;
+      }
+    }
     return false;
 }
+  
 
 function shuffle<T>(array: T[]): T[] {
     let lista: T[] = JSON.parse(JSON.stringify(array));
@@ -332,22 +353,68 @@ function showPartialResultPage(result: boolean){
         secondsParagraph = createCustomElement("p", "secondes", null, "answerResultParagraphNextQuestion", answersContainer, 1);
 
         function afterInterval(){
-            questionIndex++;
+            
             hidePartialResultPage();
-            toggleTitle(true);
-            if(typeof getCurrentQuestion() !== "undefined"){
-                setTitle(getCurrentQuestion().title);
-                loadQuestion(getCurrentQuestion());
+            if(isLogged()){
+                questionIndex++;
+                toggleTitle(true);
+                if(typeof getCurrentQuestion() !== "undefined"){
+                    setTitle(getCurrentQuestion().title);
+                    loadQuestion(getCurrentQuestion());
+                }
+                else
+                showFinalResultPage();
+            }else{
+                resetEverything();
+                const contentContainer: HTMLElement | null = document.getElementById("content");
+                if(contentContainer){                    
+                    contentContainer.style.height = `60vh`;
+                    contentContainer.style.borderRadius = "10px 10px";
+                }
+                main();
             }
-            else
-            showFinalResultPage();
+            
         }
     }
+}
+
+function updateMiddlePoints(){
+    if(isLogged()){
+        const total_points = getUser(username!, 'total_points')[0];
+        const total_questions = getUser(username!, 'total_questions')[0];
+        const total_bad_questions = getUser(username!, 'total_bad_questions')[0];
+        const middle: number = (parseInt(total_points) * parseInt(total_bad_questions)) / total_questions;
+        setVal(username!, 'middle_points', middle);
+
+    }
+    
 }
 
 function showFinalResultPage(){
     // Display the final results of player
     hideTimerProgress();
+    if(username){
+        /*
+        Points are incremented at the end so the user
+        can't get unlimited points refreshing the website
+        after answering one question lmao.
+        */
+        increment(username, 'total_points', points);
+        increment(username!, 'total_rounds', 1);
+        updateBestScore();
+        updateMiddlePoints();
+        
+        
+        // const points_data = Promise.resolve(getUser(username!, 'total_points'));
+        // let db_points: number = 0;
+        // points_data.then((data) => {
+        //     console.log(data[0], data[0] + points);
+        //     db_points = data[0];
+        // })
+        
+        
+    }
+    
     toggleTitle(false);
     const answersContainer: HTMLElement | null = document.getElementById("answers");
     let resultImage: HTMLImageElement | null = null;
@@ -371,14 +438,23 @@ function showFinalResultPage(){
         "Aïe aïe aïe 😬..."
         ,null, "answerResultParagraph", answersContainer, 1);
         resultPoints = createCustomElement("p", `${points}/${questionsJson.length}`, null, "answerResultParagraphSeconds", answersContainer, 1);
-        createCustomButton("Restart", "rgb(55, 197, 55)", "answer", null, finalResultButtonListener);
+        const contentContainer: HTMLElement | null = document.getElementById("content");
+        if(contentContainer){
+            contentContainer.style.height = `80vh`;
+            contentContainer.style.borderRadius = "10px 10px 10px 10px";
+        }
+        createCustomButton("Restart", "rgb(55, 197, 55)", "answer", "play", finalResultButtonListener);
         createCustomButton("My Stats", "orange", "answer", "play", myStatsCallback);
+        setTimeout(() => {
+            showSensibilisation();
+        }, 1000)
     }
 }
 
 function finalResultButtonListener(event: Event){
     resetEverything();
-    if(username && username.trim() !== ""){
+    if(isLogged()){
+        
         startQuestions();
     }else
         main();
@@ -394,6 +470,16 @@ function hidePartialResultPage(): void {
     }
 }
 
+function hideStats(){
+    const backgroundStats: HTMLElement | null = document.getElementById('background-invisible');
+    if(backgroundStats){
+        backgroundStats.remove();
+    }
+    const backgroundStats2: HTMLElement | null = document.getElementById('background-stats');
+    if(backgroundStats2){
+        backgroundStats2.remove();
+    }
+}
 
 function resetEverything(){
     toggleTitle(false);
@@ -403,6 +489,7 @@ function resetEverything(){
     hideErrorMessages();
     hideCustomButtons();
     hide_div_top();
+    hideStats();
     clearTimeout(timeoutQuestion);
     points = 0;
     questionIndex = 0;
@@ -416,11 +503,13 @@ function callbackAnswer(event: Event, ...args: any){
     const buttonText: string | null = button.textContent;
     
     if(buttonText && isGoodAnswer(buttonText)){
+        increment(username!, 'total_good_questions', 1);
         showPartialResultPage(true);
         // Add points
         points++;
         
     }else{
+        increment(username!, 'total_bad_questions', 1);
         showPartialResultPage(false);
     }  
 }
@@ -492,31 +581,74 @@ function hideLogoutButton(){
     button.remove();
 }
 
-function loadQuestion(question: Question){
-    row();
-    showTimerProgress();
-    showLogoutButton();
-    showQuestionProgress();
-    questionAnswered = false;
-    setTitle(question.title);
-    let colors = ["red", "purple", "green", "blue"];
-    let answerList: string[] = question.answers;
+function updateUsername(){
+    
+}
 
-    if(question.random){
-        answerList = shuffle(getCurrentQuestion().answers)
+function updateBestScore(){
+    const xhrGet = new XMLHttpRequest();
+    xhrGet.open('GET', `http://127.0.0.1:5000/api/get/${username}/best_score`, false);
+    xhrGet.send();
+    let best_score_points = parseInt(xhrGet.responseText);
+    if(isLogged() && points > best_score_points){
+        setVal(username!, 'best_score', best_score_points);
     }
-    for(let amount in question.answers){
-        createCustomButton(answerList[amount], null, 'answer', colors[0], callbackAnswer, "[button]");
-        colors.shift();
-    }
-    
-    
-    timeoutQuestion = setTimeout(function(){
+}
+
+function loadQuestion(question: Question){
+    if(isLogged()){
         
-        if(!questionAnswered){
-            showPartialResultPage(false);
+        // const testXD = Promise.resolve(getUser(username!, 'all'));
+        // testXD.then((value) => {
+        //     if(!value){
+        //         console.log(value);
+                
+        //         console.log("fatal bro");
+                
+        //         resetEverything();
+        //         localStorage.clear();
+        //         main();
+        //     }
+            
+        // })
+        const userAllData = getUser(username!, 'all');
+        if(!userAllData){
+            resetEverything();
+            localStorage.clear();
+            main();
         }
-    }, segundosParaContestar * 1000);
+        
+        
+        
+        row();
+        showTimerProgress();
+        showLogoutButton();
+        showQuestionProgress();
+        questionAnswered = false;
+        setTitle(question.title);
+        let colors = ["red", "purple", "green", "blue"];
+        let answerList: string[] = question.answers;
+
+        if(question.random){
+            answerList = shuffle(getCurrentQuestion().answers)
+        }
+        for(let amount in question.answers){
+            createCustomButton(answerList[amount], null, 'answer', colors[0], callbackAnswer, "[button]");
+            colors.shift();
+        }
+        increment(username!, 'total_questions', 1);
+        
+        timeoutQuestion = setTimeout(function(){
+            
+            if(!questionAnswered){
+                increment(username!, 'total_bad_questions', 1);
+                showPartialResultPage(false);
+            }
+        }, segundosParaContestar * 1000);
+    }else{
+        toggleTitle(false);
+        
+    }
 
 }
 
@@ -580,8 +712,94 @@ function row(){
 `;
 }
 
+function showSensibilisation(){
+    const body: HTMLElement = document.getElementsByTagName("body")[0];
+    const box: HTMLElement = document.createElement("div");
+    const box2: HTMLElement = document.createElement("div");
+    const title_exit_div: HTMLElement = document.createElement("div");
+    const title: HTMLElement = document.createElement("h2");
+    const description: HTMLElement = document.createElement("p");
+    const exit: HTMLElement = document.createElement("span");
+    const emptyElement: HTMLElement = document.createElement("div");
+
+    exit.textContent = "X";
+    title.textContent = configFile.sensibilisation.title;
+    title.id = "sensi-title";
+    description.textContent = configFile.sensibilisation.description;
+    description.id = "sensi-description";
+    title_exit_div.id = "title-exit";
+    title_exit_div.appendChild(emptyElement);
+    title_exit_div.appendChild(title);
+    title_exit_div.appendChild(exit);
+    box2.appendChild(title_exit_div);
+    exit.id = "sensi-title";
+    box2.appendChild(description);
+    box.id = "box-one";
+    box2.id = "box-two";
+    box.appendChild(box2);
+    body.insertBefore(box, body.firstChild);
+    setTimeout(() => {
+        box2.style.marginTop = "15vh";
+    }, 500);
+    exit.addEventListener('click', () => {
+        setTimeout(() => {
+            box2.style.marginTop = "-40vh";
+            
+        }, 250);
+        setTimeout(() => {
+            box.remove();
+        }, 1250);
+    })
+}
+
 function myStatsCallback(){
-    console.log("klk");
+    const backgroundInivisible: HTMLElement = document.createElement("div");
+    const background: HTMLElement = document.createElement("div");
+    const exit: HTMLElement = document.createElement("span");
+    const keyfield: HTMLElement = document.createElement("div");
+    const valuefield: HTMLElement = document.createElement("div");
+    const keys_values: UserData = {
+        username: username,
+        total_points: getUser(username!, 'total_points')[0],
+        total_questions: getUser(username!, 'total_questions')[0],
+        total_good_questions: getUser(username!, 'total_good_questions')[0],
+        total_bad_questions: getUser(username!, 'total_bad_questions')[0],
+        total_rounds: getUser(username!, 'total_rounds')[0],
+        middle_points: getUser(username!, 'middle_points')[0],
+        best_score: getUser(username!, 'best_score')[0]
+    }
+    for(let key in keys_values){
+        const keyElement: HTMLElement = document.createElement("p");
+        keyElement.textContent = key.replace(/_/g, ' ');
+        keyElement.style.textTransform = "capitalize";
+        keyfield.appendChild(keyElement);
+        
+        const valueElement: HTMLElement = document.createElement("p");
+        valueElement.textContent = keys_values[key];
+        valuefield.appendChild(valueElement);
+    }
+    backgroundInivisible.id = "background-invisible";
+    exit.textContent = "X";
+    exit.style.color = "red";
+    exit.addEventListener('click', () => {
+        setTimeout(() => {
+            backgroundInivisible.style.marginTop = "-90vh";
+                
+        }, 300)
+    })
+    background.id = "background-stats";
+    
+    background.appendChild(keyfield);
+    background.appendChild(valuefield);
+    background.appendChild(exit);
+    backgroundInivisible.appendChild(background);
+    const contentDiv: HTMLElement | null = document.getElementById('content');
+    if(contentDiv)
+    contentDiv.insertBefore(backgroundInivisible, contentDiv.firstChild);
+    setTimeout(() => {
+    backgroundInivisible.style.marginTop = "unset";
+        
+    }, 300)
     
 }
 
@@ -589,6 +807,7 @@ function main(){
     column();
     hideLogoutButton();
     toggleTitle(false);
+    
     const answersContainer: HTMLElement | null = document.getElementById("answers");
     let style: HTMLCollectionOf<HTMLElement> | HTMLElement = document.getElementsByTagName("style");
     if(style[0]){
@@ -616,39 +835,55 @@ function main(){
     }
     
     createCustomButton("Let's play!", "red", "answer", "play", mainButtonStart, "[button]", "green", "[check_username]");
+    
+}
+
+if(isLogged()){    
+    toggleTitle(false);
+    startQuestions();
+}
+else{
+    main();
 }
 
 
-
-// if(username && username.trim() !== ""){
-//     toggleTitle(false);
-//     startQuestions();
-// }
-    
-// else
-// main();
-const testData = {
-    username: "test",
-    total_points: 0,
-    total_questions: 0,
-    total_good_questions: 0,
-    total_bad_questions: 0,
-    total_rounds: 0,
-    middle_points: 0
+function createUser(data: UserData): boolean{
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', "http://127.0.0.1:5000/api/create-user-data", false);
+    xhr.send(JSON.stringify(data))
+    return xhr.status === 200;
 }
 
+function increment(username: string, option: string, amount: number): boolean{
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `http://127.0.0.1:5000/api/increment/${username}/${option}/${amount}`, false);
+    xhr.send();
+    return xhr.status === 200;
+}
 
+function setVal(username: string, option: string, amount: number): boolean{
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `http://127.0.0.1:5000/api/setval/${username}/${option}/${amount}`, false);
+    xhr.send();
+    return xhr.status === 200;
+}
 
+interface GetUserRecord {
+    username: string,
+    total_points: string, 
+    total_questions: number,
+    total_good_questions: number,
+    total_bad_questions: number,
+    total_rounds: number,
+    middle_points: number
+}
 
-let f = fetch("http://127.0.0.1:5000/api/create-user-data", {
-    method: "POST",
-    body: JSON.stringify(testData)
-})
-
-.then(response => response)
-.then(data => {
-    console.log(data.status);
-    console.log(data.text());
-    
-    
-})
+function getUser(username: string, option: string = "all"): boolean | Promise<{[key: string]: string | number}> {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `http://127.0.0.1:5000/api/get/${username}/${option}`, false);
+    xhr.send();
+    if (xhr.status === 200){
+        return JSON.parse(xhr.responseText);
+    }
+    return false;
+}

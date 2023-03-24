@@ -1,0 +1,42 @@
+#box-one{
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    overflow: hidden;
+}
+
+#box-two {
+    margin-top: -40vh;
+    transition: margin-top 1s;
+    width: 70vw;
+    height: 40vh;
+    border-radius: 15px;
+    background-image: url(/images/fancy-cushion.webp);
+    text-align: center;
+}
+
+#sensi-title {
+    border-bottom: 2px solid white;
+    color: rgb(245, 228, 165);
+    text-shadow: 0px 0px 10px white;
+}
+
+#sensi-description {
+    margin-top: 15px;
+    color: white;
+}
+
+#title-exit{
+    display: flex;
+    justify-content: space-between;
+}
+
+#title-exit span{
+    font-size: 20px;
+    color: red;
+    text-shadow: unset;
+    border: unset;
+}
+
