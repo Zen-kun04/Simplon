@@ -17,3 +17,18 @@
         transform: scale(1);
     }
 }
+
+#arrow {
+    display: flex;
+    border: 1px solid red;
+    width: 30px;
+    height: 20px;
+    align-items: center;
+}
+
+.line {
+    width: 15px;
+    height: 1px;
+    background-color: #222;
+    transition: all 1s;
+}
