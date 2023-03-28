@@ -1,5 +1,6 @@
-@import url(fonts.css);
-@import url(animations.css);
+@import url(fonts.scss);
+@import url(animations.scss);
+@import url(transitions.scss);
 
 $gradient: linear-gradient(
     0.25turn,
@@ -11,6 +12,7 @@ $gradient: linear-gradient(
 * {
     margin: 0;
     padding: 0;
+    transition: margin-left 500ms ease-in-out, margin-right 500ms ease-in-out;
 }
 
 main {
@@ -42,10 +44,27 @@ main {
         font-family: "Minecraft";
         overflow: hidden;
         grid-row: 2;
-    }
+        display: flex;
 
-    .hidden {
-        margin-left: 40vw;
+        .hidden-right {
+            margin-left: 90vw !important;
+        }
+
+        .hidden-left {
+            margin-left: -37.6vw !important;
+        }
+
+        .character {
+            margin: 0 3vw;
+            p {
+                background-color: rgba(61, 61, 61, 0.46);
+                width: 60px;
+                margin: 0 auto;
+                text-transform: capitalize;
+            }
+
+        }
+
     }
 
     #start-button {
@@ -78,7 +97,7 @@ main {
             background-size: 400%;
             border-radius: 100%;
             overflow: hidden;
-            animation: arrow 2s infinite alternate;
+            animation: background-arrow 2s infinite alternate;
         }
         #left-arrow {
             rotate: 180deg;

@@ -10,22 +10,25 @@
         }
     },
     "characters": {
-        "steve": {
+          "steve": {
             "skin_location": "",
             "low_speed": {
-                "mining": 30
+              "mining": 30
             },
             "chat": {
-                "mine": "Make your character mine and get items"
+              "mine": "Make your character mine and get items"
             }
-        },
-        "alex": {
+          },
+          "alex": {
             "skin_location": "",
             "low_speed": {
-                "build": 30
+              "build": 30
+            },
+            "chat": {
+              "build": "Make your character build"
             }
-        }
-    },
+          }
+        },
     "food_after_task": {
         "fish": {
             "location": "",

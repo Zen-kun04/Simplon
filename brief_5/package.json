@@ -4,7 +4,8 @@
   "description": "",
   "source": "index.html",
   "scripts": {
-    "dev": "parcel build & parcel",
+    "win-dev": "rmdir /s /q .parcel-cache & parcel build & parcel build images/skins/* & parcel",
+    "dev": "rm -rf .parcel-cache & parcel build & parcel",
     "build": "parcel build",
     "start": "parcel"
   },

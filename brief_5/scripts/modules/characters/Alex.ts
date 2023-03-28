@@ -1,8 +1,8 @@
 import { Character } from "../Character";
 
-export class Steve extends Character{
+export class Alex extends Character{
     constructor(){
-        super("Steve");
+        super("Alex");
     }
     a = this.getTaskName();
     b = this.getTaskSpeed();
