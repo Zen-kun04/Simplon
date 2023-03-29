@@ -1,4 +1,6 @@
 import config from '../../config.json'
+import { rightArrowEventListener, leftArrowEventListener } from './events';
+import { showPlayingScreen } from './PlayingScreen';
 
 interface Character {
     skin_location: string;
@@ -95,73 +97,123 @@ export function getCurrentCharacter(): HTMLElement | null{
     return character;
 }
 
-
-
-
-
-
-
-
-
-
-
 export function getNextCharacter(): HTMLElement | null {
-    
-    
-    const currentCharacter: HTMLElement | null = getCurrentCharacter();
-    if(currentCharacter){
-        const allCharacters: Characters = config.characters;
-        const currentCharacterName: string | null = currentCharacter.textContent;
-        if(
-            currentCharacterName && 
-            currentCharacterName?.trim() !== "" && 
-            Object.keys(allCharacters).includes(currentCharacterName.trim().toLowerCase())
-            ){
-            const keys = Object.keys(allCharacters)
-            const currentCharacterIndex: number = keys.indexOf(currentCharacterName.trim().toLowerCase(), 0);
-            if(currentCharacterIndex + 1 === keys.length){
-                // Current character is the last one
-                console.log(`El personaje actual es ${keys[currentCharacterIndex]} y el proximo sera ${keys[0]}`);
-
-            }else{
-                console.log(`El personaje actual es ${keys[currentCharacterIndex]} y el proximo sera ${keys[currentCharacterIndex + 1]}`);
-                hideCharacter(currentCharacterName.trim().toLowerCase(), "left");
-                const newID: string = keys[currentCharacterIndex + 1];
-                const newCharacter: HTMLElement | null = document.getElementById(newID);
-                console.log(newCharacter);
-                if(newCharacter && newCharacter.textContent && newCharacter.textContent.trim() !== ""){
-                    setTimeout(() => {
-                        // newCharacter.style.marginLeft = "44vw";
-                        newCharacter.classList.remove('hidden-right');
-                    }, 500);
-                    
-                    // setTimeout(() => {
-                        
-                    // }, 300)
-                    
-                }
-                // showCharacter(newCharacter.textContent.trim().toLowerCase(), "left");
-                
-                // setTimeout(() => {
-                //     newCharacter?.classList.remove('hidden');
-                // }, 300)
-                
-
-            }
-            
-            
-        }else
-        location.reload();
-
-        
+    const character: HTMLElement | null = getCurrentCharacter();
+    if(character){
+        const currentCharacterIndex: number = Object.keys(config.characters).indexOf(character.textContent!.trim(), 0);
+        return document.getElementById(Object.keys(config.characters)[currentCharacterIndex+1]); 
     }
     return null;
+}
+
+export function getPreviousCharacter(): HTMLElement | null {
+    const character: HTMLElement | null = getCurrentCharacter();
+    if(character){
+        const currentCharacterIndex: number = Object.keys(config.characters).indexOf(character.textContent!.trim(), 0);
+        return document.getElementById(Object.keys(config.characters)[currentCharacterIndex-1]); 
+    }
+    return null;
+}
+
+function isLastCharacter(): boolean {
+    const current: HTMLElement | null = getCurrentCharacter();
+    if(current){
+        return Object.keys(config.characters).length === Object.keys(config.characters).indexOf(current.textContent!.trim()) + 2;
+    }
+    return true;
+}
+
+function isFirstCharacter(): boolean {
+    const current: HTMLElement | null = getCurrentCharacter();
+    if(current){
+        return Object.keys(config.characters).indexOf(current.textContent!.trim()) === 0;
+    }
+    return true;
 }
 
 
 
 
+// Change the character when clicking the right button
+export function changeCharacterRight(): HTMLElement | null {
+    const currentCharacter: HTMLElement | null = getCurrentCharacter();
+    if(currentCharacter && Object.keys(config.characters).includes(currentCharacter.textContent!.trim())){
+        // Character registered in the config file
+        const nextCharacter: HTMLElement | null = getNextCharacter();
 
+        const leftArrow: HTMLElement | null = document.getElementById('left-arrow');
+        if(leftArrow){
+            leftArrow.style.opacity = "1";
+            leftArrow.removeEventListener('click', leftArrowEventListener);
+            leftArrow.addEventListener('click', leftArrowEventListener);
+        }
+
+        if(nextCharacter){
+            hideCharacter(currentCharacter.textContent!.trim(), "left");
+            nextCharacter?.classList.remove('hidden-right');            
+            
+        }
+        if(isLastCharacter()){            
+            const rightArrow: HTMLElement | null = document.getElementById('right-arrow');
+            if(rightArrow){
+                rightArrow.style.opacity = "0.5";
+                rightArrow.removeEventListener('click', rightArrowEventListener);
+            }
+        }
+        return nextCharacter;
+    }
+    return null;
+}
+
+
+// Change the character when clicking the left button
+export function changeCharacterLeft(): HTMLElement | null {
+    
+    
+    const currentCharacter: HTMLElement | null = getCurrentCharacter();
+    if(currentCharacter && Object.keys(config.characters).includes(currentCharacter.textContent!.trim())){
+        
+        // Character registered in the config file
+        const previousCharacter: HTMLElement | null = getPreviousCharacter();
+        const rightArrow: HTMLElement | null = document.getElementById('right-arrow');
+        if(currentCharacter && Object.keys(config.characters).indexOf(currentCharacter.textContent!.trim(), 0) + 1 === Object.keys(config.characters).length && rightArrow){
+            console.log('arriba españa');
+            
+            rightArrow.style.opacity = "1";
+            rightArrow.removeEventListener('click', rightArrowEventListener);
+            rightArrow.addEventListener('click', rightArrowEventListener);
+        }
+        
+        if(previousCharacter){
+            hideCharacter(currentCharacter.textContent!.trim(), "right");
+            previousCharacter?.classList.remove('hidden-left');            
+            
+        }
+        if(isFirstCharacter()){
+            console.log('lmao XD');
+            
+            const leftArrow: HTMLElement | null = document.getElementById('left-arrow');
+            
+            if(leftArrow){
+                leftArrow.style.opacity = "0.5";
+                leftArrow.removeEventListener('click', leftArrowEventListener);
+
+                
+            }
+        }
+        return previousCharacter;
+    }
+    return null;
+}
+
+export function isValidCharacterSelected(): boolean{
+    const current: HTMLElement | null = document.querySelector(".character:not(.hidden-right):not(.hidden-left)");
+    if(current){
+        return Object.keys(config.characters).includes(current.textContent!.trim());
+    }
+
+    return false;
+}
 
 export function nextCharacterToLeft(){
 

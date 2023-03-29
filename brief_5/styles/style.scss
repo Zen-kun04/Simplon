@@ -12,7 +12,6 @@ $gradient: linear-gradient(
 * {
     margin: 0;
     padding: 0;
-    transition: margin-left 500ms ease-in-out, margin-right 500ms ease-in-out;
 }
 
 main {
@@ -39,7 +38,7 @@ main {
         margin-top: 42vh;
         width: 40vw;
         height: 35vh;
-        border: 1px solid red;
+        // border: 1px solid red;
         text-align: center;
         font-family: "Minecraft";
         overflow: hidden;
@@ -57,10 +56,11 @@ main {
         .character {
             margin: 0 3vw;
             p {
-                background-color: rgba(61, 61, 61, 0.46);
+                background-color: rgba(61, 61, 61, 0.277);
                 width: 60px;
                 margin: 0 auto;
                 text-transform: capitalize;
+                color: white;
             }
 
         }
@@ -101,7 +101,12 @@ main {
         }
         #left-arrow {
             rotate: 180deg;
-            
+            opacity: 0.5;
+            margin-right: 5px;
+        }
+
+        #right-arrow {
+            margin-left: 5px;
         }
     }
 

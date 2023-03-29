@@ -27,6 +27,15 @@
             "chat": {
               "build": "Make your character build"
             }
+          },
+          "stevy": {
+            "skin_location": "",
+            "low_speed": {
+              "mining": 30
+            },
+            "chat": {
+              "mine": "Make your character mine and get items"
+            }
           }
         },
     "food_after_task": {
