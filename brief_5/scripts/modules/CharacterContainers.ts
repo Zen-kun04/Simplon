@@ -28,7 +28,7 @@ export function createCharacter(id: string, visible: boolean = true): HTMLElemen
     const characterParagraph: HTMLElement = document.createElement('p');
     const characterSkin: HTMLImageElement = document.createElement('img');
     characterBody.id = id.trim().toLowerCase();
-    characterSkin.src = `${id.trim().toLowerCase()}.png`;
+    characterSkin.src = config.characters[id.trim().toLowerCase()].skin_location;
     characterSkin.alt = `Minecraft skin of ${id}`;
     characterParagraph.textContent = id;
     characterBody.classList.add('character');

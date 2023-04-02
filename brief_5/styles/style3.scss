@@ -1,0 +1,14 @@
+@import url(./fonts.scss);
+
+body {
+    background-image: url(../images/b.png);
+    background-repeat: no-repeat;
+
+    h1,
+    p {
+        font-family: "Minecraft";
+        font-size: 20px;
+        color: white;
+    }
+
+}

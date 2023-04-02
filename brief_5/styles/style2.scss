@@ -20,7 +20,110 @@ main {
         display: flex;
         flex-direction: column;
         align-items: center;
-        
+    }
 
+    .progressbar {
+        border: 1px solid red;
+        width: 40vw; // 35vw
+        height: 10vw;
+    }
+
+    #a {
+        grid-column: 1/3;
+        grid-row: 1/2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #b {
+        grid-column: 1/2;
+        grid-row: 2/2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #c {
+        grid-column: 3/3;
+        grid-row: 2/2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // .progress-increment,
+        // .progress-item {
+        //     // left: 55%;
+        //     position: relative;
+        // }
+        .progressbar-outside {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        
+    }
+
+    .progress-increment {
+        width: 30px;
+        height: 30px;
+    }
+
+    .progress-item {
+        width: 15px;
+        height: 15px;
+    }
+
+    .progressbar-inside {
+        // border: 1px solid green;
+        background-color: greenyellow;
+        width: 23vw;
+        height: 8.5px;
+        transition: all 2s;
+    }
+
+    .progressbar-outside {
+        border: 1px solid black;
+        width: 30vw;
+        height: 10px;
+        margin: 0;
+    }
+
+    #main-progressbar {
+        display: grid;
+        grid-template-columns: 8fr 1fr 8fr;
+        grid-template-rows: repeat(2, 1fr);
+        margin-top: 25vh;
+    }
+
+    #hotbar-container {
+        width: 100vw;
+    }
+
+    #hotbar {
+        width: 90vw;
+        background-color: rgb(205, 204, 204);
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        // border-left: 1.5vw solid rgb(205, 204, 204);
+        // border-right: 1.5vw solid rgb(205, 204, 204);
+    }
+
+    #slot {
+
+        &:first-child {
+            margin-left: 2vw;
+        }
+
+        &:last-child {
+            margin-right: 2vw;
+        }
+
+        width: 8vw;
+        height: 8vw;
+        background-color: rgb(165, 165, 165);
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        box-shadow: -2px -2px 0px black, 2px 2px 0px white;
     }
 }

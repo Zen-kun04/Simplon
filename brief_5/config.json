@@ -11,7 +11,7 @@
     },
     "characters": {
           "steve": {
-            "skin_location": "",
+            "skin_location": "./images/skins/steve.png",
             "low_speed": {
               "mining": 30
             },
@@ -20,7 +20,7 @@
             }
           },
           "alex": {
-            "skin_location": "",
+            "skin_location": "./images/skins/alex.png",
             "low_speed": {
               "build": 30
             },
@@ -29,7 +29,7 @@
             }
           },
           "stevy": {
-            "skin_location": "",
+            "skin_location": "./images/skins/steve.png",
             "low_speed": {
               "mining": 30
             },
@@ -37,7 +37,7 @@
               "mine": "Make your character mine and get items"
             }
           }
-        },
+    },
     "food_after_task": {
         "fish": {
             "location": "",
@@ -51,5 +51,9 @@
             "location": "",
             "hunger": 30
         }
+    },
+    "tasks": {
+        "mine": "./pickaxe.png",
+        "build": "./wood.png"
     }
 }

@@ -1,6 +1,6 @@
-@import url(fonts.scss);
-@import url(animations.scss);
-@import url(transitions.scss);
+@import url(./fonts.scss);
+@import url(./animations.scss);
+@import url(./transitions.scss);
 
 $gradient: linear-gradient(
     0.25turn,
@@ -21,7 +21,6 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     display: grid;
-    grid-template-columns: 1 100v;
     grid-template-rows: repeat(4, 1fr);
 
     h1 {

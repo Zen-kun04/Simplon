@@ -1,6 +1,7 @@
 import { hideCharacter, changeCharacterRight,
     changeCharacterLeft, getCurrentCharacter, isValidCharacterSelected } from "./CharacterContainers";
 import { showPlayingScreen } from "./PlayingScreen";
+import { progressLost, progressList, max } from "./PlayingScreen";
 
 export function rightArrowEventListener(){
     changeCharacterRight();
@@ -40,6 +41,59 @@ export function buttonEvent(){
             
             
         });
+    }   
+}
+
+export function incrementButton(event: Event){
+    const target = event.target as HTMLElement;
+    console.log(target);
+    if(target)
+    if(target.classList.contains('a') || target.classList.contains('b') || target.classList.contains('c')){
+        if(progressList.length > progressLost.length && progressLost.includes(document.querySelector(`.progressbar-inside.${target.classList[1]}`)!)){
+            
+            
+            progressLost.splice(progressLost.indexOf(document.querySelector(`.progressbar-inside.${target.classList[1]}`)!, 0), 1);
+        }
+        if(target.classList.contains('a')){
+            
+            const progressbar: HTMLElement | null = document.querySelector('.progressbar-inside.a');
+            if(progressbar){
+                
+                progressList.forEach((element) => {
+                    if(element.progressbar.classList.contains('a') && element.count + (max * 0.1) <= max){
+                        element.count += (max * 0.1);
+                        element.progressbar.style.width = `${element.count}vw`;
+                    }
+                    
+                })
+            }
+        }else if(target.classList.contains('b')){
+            const progressbar: HTMLElement | null = document.querySelector('.progressbar-inside.b');
+            if(progressbar){
+                
+                progressList.forEach((element) => {
+                    if(element.progressbar.classList.contains('b') && element.count + (max * 0.1) <= max){
+                        element.count += (max * 0.1);
+                        element.progressbar.style.width = `${element.count}vw`;
+                    }
+                    
+                })
+            }
+        }else if(target.classList.contains('c')){
+            const progressbar: HTMLElement | null = document.querySelector('.progressbar-inside.c');
+            if(progressbar){
+                
+                progressList.forEach((element) => {
+                    if(element.progressbar.classList.contains('c') && element.count + (max * 0.1) <= max){
+                        element.count += (max * 0.1);
+                        element.progressbar.style.width = `${element.count}vw`;
+                    }
+                    
+                })
+            }
+        }
     }
+    
+    
     
 }
