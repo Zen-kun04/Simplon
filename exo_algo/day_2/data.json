@@ -1,0 +1,56 @@
+{
+    "telephones": [
+        {
+            "telephone": "iPhone 13",
+            "fabricant": "Apple",
+            "ventes_annuelles_estimees": 100000000
+        },
+        {
+            "telephone": "Samsung Galaxy S21",
+            "fabricant": "Samsung",
+            "ventes_annuelles_estimees": 60000000
+        },
+        {
+            "telephone": "iPhone 12",
+            "fabricant": "Apple",
+            "ventes_annuelles_estimees": 50000000
+        },
+        {
+            "telephone": "Xiaomi Redmi Note 10",
+            "fabricant": "Xiaomi",
+            "ventes_annuelles_estimees": 45000000
+        },
+        {
+            "telephone": "Samsung Galaxy A52",
+            "fabricant": "Samsung",
+            "ventes_annuelles_estimees": 40000000
+        }
+    ],
+    "consoles": [
+        {
+            "console": "PlayStation 2",
+            "fabricant": "Sony",
+            "ventes_totales_estimees": 155000000
+        },
+        {
+            "console": "Nintendo DS",
+            "fabricant": "Nintendo",
+            "ventes_totales_estimees": 154000000
+        },
+        {
+            "console": "Game Boy/Game Boy Color",
+            "fabricant": "Nintendo",
+            "ventes_totales_estimees": 118700000
+        },
+        {
+            "console": "PlayStation 4",
+            "fabricant": "Sony",
+            "ventes_totales_estimees": 116000000
+        },
+        {
+            "console": "PlayStation",
+            "fabricant": "Sony",
+            "ventes_totales_estimees": 102500000
+        }
+    ]
+}
