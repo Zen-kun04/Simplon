@@ -1,0 +1,14 @@
+@import url(../general/fonts.scss);
+
+body {
+    background-image: url(../../images/death-background-mobile.png);
+    background-repeat: no-repeat;
+
+    h1,
+    p {
+        font-family: "Minecraft";
+        font-size: 20px;
+        color: white;
+    }
+
+}

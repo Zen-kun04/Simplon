@@ -1,0 +1,46 @@
+.progressbar {
+    appearance: none;
+    &#life,
+    &#hunger,
+    &#task{
+        &[value] {
+            width: 100px;
+            height: 20px;
+            &::-webkit-progress-bar {
+                border-radius: 20px;
+            }
+            &::-webkit-progress-value {
+                border-radius: 20px;
+                transition: all 1s linear;
+            }
+        }
+    }
+
+    &#life[value]::-webkit-progress-value {
+        background-color: red;
+    }
+
+    &#hunger[value]::-webkit-progress-value {
+        background-color: orange;
+    }
+
+    &#task[value]::-webkit-progress-value {
+        background-color: blue;
+    }
+}
+
+#progress-container {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#single-progress-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

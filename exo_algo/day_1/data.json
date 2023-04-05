@@ -1,0 +1,54 @@
+{
+    "villes": [
+      {
+        "ville": "Mumbai",
+        "pays": "Inde",
+        "population": "21.7 millions"
+      },
+      {
+        "ville": "Istanbul",
+        "pays": "Turquie",
+        "population": "15.5 millions"
+      },
+      {
+        "ville": "Delhi",
+        "pays": "Inde",
+        "population": "30.3 millions"
+      },
+      {
+        "ville": "Shanghai",
+        "pays": "Chine",
+        "population": "27.0 millions"
+      },
+      {
+        "ville": "Le Caire",
+        "pays": "Égypte",
+        "population": "10.8 millions"
+      },
+      {
+        "ville": "São Paulo",
+        "pays": "Brésil",
+        "population": "22.0 millions"
+      },
+      {
+        "ville": "Lahore",
+        "pays": "Pakistan",
+        "population": "13.2 millions"
+      },
+      {
+        "ville": "Pékin",
+        "pays": "Chine",
+        "population": "21.5 millions"
+      },
+      {
+        "ville": "Dhaka",
+        "pays": "Bangladesh",
+        "population": "12.5 millions"
+      },
+      {
+        "ville": "Tokyo",
+        "pays": "Japon",
+        "population": "37.4 millions"
+      }
+    ]
+  }
