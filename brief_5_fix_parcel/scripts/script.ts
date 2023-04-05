@@ -7,7 +7,6 @@ import { getCurrentCharacter, loadAllCharacters } from './modules/CharacterConta
 function addClass(element: HTMLElement | Element, className: string): void{
     element.classList.add(className);
 }
-
 loadAllCharacters();
 rightArrowEvent();
 leftArrowEvent();

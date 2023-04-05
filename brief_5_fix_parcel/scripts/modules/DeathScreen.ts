@@ -1,6 +1,6 @@
 
 
-export async function DeathScreen(points: number){
+export async function DeathScreen(){
     const playingDocument = await fetch("./templates/death.html");
     const html = await playingDocument.text();
     const parser = new DOMParser();
@@ -10,13 +10,10 @@ export async function DeathScreen(points: number){
     if (oldHtml) {
         oldHtml.replaceWith(newDoc.documentElement);
     }
-    const oofSound = document.getElementById("oof")! as HTMLAudioElement;
-    oofSound.volume = 0.2;
-    oofSound.play();
     const deathMessage: HTMLElement = document.createElement('p');
     deathMessage.textContent = "Go to the f#cking mine 💀";
     const scoreMessage: HTMLElement = document.createElement('p');
-    scoreMessage.textContent = `Score: ${points}`;
+    scoreMessage.textContent = "Score: 7";
 
     const body: HTMLElement = document.querySelector('body')!;
     body.appendChild(deathMessage);

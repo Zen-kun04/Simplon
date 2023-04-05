@@ -1,0 +1,24 @@
+#bottom {
+    margin: 0 auto;
+    grid-row: 3;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-items: center;
+    gap: 4px;
+    margin-top: 15px;
+    button {
+        &:hover {
+            background-color: #6989a4;
+            cursor: pointer;
+        }
+
+        width: 60vw;
+        height: 6vh;
+        font-family: "Minecraft";
+        background-color: #676464;
+        color: #FFFFFF;
+        box-shadow: inset 0px -3px rgba(0, 0, 0, 0.351);
+        max-width: 150px;
+    }
+}

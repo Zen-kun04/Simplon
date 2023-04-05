@@ -2,6 +2,11 @@ import config from '../../config.json'
 import { rightArrowEventListener, leftArrowEventListener } from './Events';
 import { showPlayingScreen } from './PlayingScreen';
 
+import steve from '../../images/skins/steve.png';
+import alex from '../../images/skins/alex.png';
+import stevy from '../../images/skins/stevy.png';
+
+
 interface Character {
     skin_location: string;
     low_speed: {
@@ -28,12 +33,13 @@ export function createCharacter(id: string, visible: boolean = true): HTMLElemen
     const characterParagraph: HTMLElement = document.createElement('p');
     const characterSkin: HTMLImageElement = document.createElement('img');
     characterBody.id = id.trim().toLowerCase();
-    characterSkin.src = config.characters[id.trim().toLowerCase()].skin_location;
+    // characterSkin.src = config.characters[id.trim().toLowerCase()].skin_location;
+    characterSkin.src = './steve.png';
     characterSkin.alt = `Minecraft skin of ${id}`;
     characterParagraph.textContent = id;
     characterBody.classList.add('character');
     if(!visible){
-        characterBody.classList.add('hidden-left');
+        characterBody.classList.add('hidden-right');
     }
     characterBody.appendChild(characterParagraph);
     characterBody.appendChild(characterSkin);
@@ -59,12 +65,12 @@ export function hideCharacter(id: string, to: string): void {
         if(to === "left")
         // container.style.marginLeft = "-220px";
         setTimeout(() => {
-            container.classList.add('hidden-right')
+            container.classList.add('hidden-left')
         }, 100);
         else if(to === "right")
         // container.style.marginRight = "-220px";
         setTimeout(() => {
-            container.classList.add('hidden-left')
+            container.classList.add('hidden-right')
         }, 100);
         // setTimeout(() => {
         //     container.classList.add('hidden');
@@ -80,21 +86,16 @@ export function showCharacter(id: string, to: string): void {
     
     to = to.toLowerCase();
     if(container){
+        
+        
         if(to === "left")
         container.style.marginLeft = "-40vw";
         else if(to === "right")
         container.style.marginRight = "-40vw";
+        
+        
+
     }
-}
-
-export function hasValidUsername(): boolean {
-    const inputUsername = document.querySelector("#username-input") as HTMLInputElement;
-    return (inputUsername) && (inputUsername.value.trim() !== "");
-}
-
-export function getUsername(): string {
-    const inputUsername = document.querySelector("#username-input") as HTMLInputElement;
-    return inputUsername.value.trim();
 }
 
 export function getCurrentCharacter(): HTMLElement | null{
@@ -155,7 +156,7 @@ export function changeCharacterRight(): HTMLElement | null {
 
         if(nextCharacter){
             hideCharacter(currentCharacter.textContent!.trim(), "left");
-            nextCharacter?.classList.remove('hidden-left');            
+            nextCharacter?.classList.remove('hidden-right');            
             
         }
         if(isLastCharacter()){            
@@ -182,6 +183,7 @@ export function changeCharacterLeft(): HTMLElement | null {
         const previousCharacter: HTMLElement | null = getPreviousCharacter();
         const rightArrow: HTMLElement | null = document.getElementById('right-arrow');
         if(currentCharacter && Object.keys(config.characters).indexOf(currentCharacter.textContent!.trim(), 0) + 1 === Object.keys(config.characters).length && rightArrow){
+            console.log('arriba españa');
             
             rightArrow.style.opacity = "1";
             rightArrow.removeEventListener('click', rightArrowEventListener);
@@ -190,10 +192,11 @@ export function changeCharacterLeft(): HTMLElement | null {
         
         if(previousCharacter){
             hideCharacter(currentCharacter.textContent!.trim(), "right");
-            previousCharacter?.classList.remove('hidden-right');            
+            previousCharacter?.classList.remove('hidden-left');            
             
         }
         if(isFirstCharacter()){
+            console.log('lmao XD');
             
             const leftArrow: HTMLElement | null = document.getElementById('left-arrow');
             

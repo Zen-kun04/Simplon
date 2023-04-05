@@ -2,9 +2,8 @@
   "name": "brief_5",
   "version": "1.0.0",
   "description": "",
-  "source": "./templates/index.html",
   "scripts": {
-    "win-dev": "rmdir /s /q .parcel-cache & parcel build styles/death_page/* styles/play_page/modules/* styles/play_page/play_style.scss styles/start_page/start_style.scss styles/start_page/modules/* styles/general/* images/skins/* images/items/* images/*.png templates/* & parcel",
+    "win-dev": "rmdir /s /q .parcel-cache & parcel build styles/death_page/* styles/play_page/* styles/start_page/start_style.scss styles/start_page/modules/* styles/general/* images/skins/* images/items/* images/*.png templates/* & parcel",
     "dev": "rm -rf .parcel-cache & parcel build styles/death_page/* styles/play_page/* styles/start_page/start_style.scss styles/start_page/modules/* styles/general/* images/skins/* images/items/* images/*.png templates/* & parcel",
     "build": "parcel build",
     "start": "parcel"

@@ -11,7 +11,7 @@
     },
     "characters": {
           "steve": {
-            "skin_location": "./images/skins/steve.png",
+            "skin_location": "steve.png",
             "low_speed": {
               "mining": 30
             },
@@ -29,7 +29,7 @@
             }
           },
           "stevy": {
-            "skin_location": "./images/skins/stevy.png",
+            "skin_location": "./images/skins/steve.png",
             "low_speed": {
               "mining": 30
             },

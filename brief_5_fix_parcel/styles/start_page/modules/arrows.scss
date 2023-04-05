@@ -1,0 +1,30 @@
+$gradient: linear-gradient(
+    0.25turn,
+    rgb(244, 77, 21),
+    rgb(237, 203, 13),
+    rgb(176, 248, 21),
+);
+
+#arrows {
+    grid-row: 3;
+    margin: auto auto;
+    margin-top: 1vh;
+    #left-arrow,
+    #right-arrow {
+        width: 30px;
+        background-image: $gradient;
+        background-size: 400%;
+        border-radius: 100%;
+        overflow: hidden;
+        animation: background-arrow 1s infinite alternate;
+    }
+    #left-arrow {
+        rotate: 180deg;
+        opacity: 0.5;
+        margin-right: 5px;
+    }
+
+    #right-arrow {
+        margin-left: 5px;
+    }
+}
