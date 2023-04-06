@@ -1,7 +1,7 @@
 import { hideCharacter, changeCharacterRight,
-    changeCharacterLeft, getCurrentCharacter, isValidCharacterSelected, hasValidUsername, getUsername } from "./CharacterContainers";
-import { showPlayingScreen } from "./PlayingScreen";
-import { progressLost, progressList, max } from "./PlayingScreen";
+    changeCharacterLeft, getCurrentCharacter, isValidCharacterSelected, hasValidUsername, getUsername, getCharacterTask } from "./CharacterContainers";
+import { showPlayingScreen, predict, resetChatPrediction } from "./PlayingScreen";
+import { addChatLog, addChatPrediction, currentCharacter, getCharacterChatTask } from "./PlayingScreen";
 
 export function rightArrowEventListener(){
     changeCharacterRight();
@@ -25,6 +25,61 @@ export function leftArrowEvent(){
     const leftArrow: HTMLElement | null = document.getElementById("left-arrow");
     if(leftArrow)    
     leftArrow.addEventListener('click', leftArrowEventListener);
+}
+
+export function onCommandTypeEvent(e: Event){
+    const input = document.querySelector("input#chat-input") as HTMLInputElement;
+    resetChatPrediction();
+    if(input.value.trim().startsWith('/') && input.value.trim().length > 1) {
+        const possible_commands: string[] = predict(input.value.trim());
+        resetChatPrediction();
+        possible_commands.forEach((cmd) => {
+            addChatPrediction(cmd);
+        })
+        
+    }
+    
+}
+
+export function onKeyPressEvent(e: Event){
+    const key_object = e as KeyboardEvent;
+    if(key_object.key === "Enter"){
+        const input = document.querySelector("input#chat-input") as HTMLInputElement;
+        if(input.value.startsWith('/')){
+            const possible_commands: string[] = predict(input.value.trim());
+            if(possible_commands.length > 0){
+                const progress_life = document.querySelector(".progressbar#life") as HTMLElement;
+                const progress_hunger = document.querySelector(".progressbar#hunger") as HTMLElement;
+                const progress_task = document.querySelector(".progressbar#task") as HTMLElement;
+                const current_percentage_life: number = parseInt(progress_life.getAttribute("value")!);
+                const current_percentage_hunger: number = parseInt(progress_hunger.getAttribute("value")!);
+                const current_percentage_task: number = parseInt(progress_task.getAttribute("value")!);
+                
+                console.log(getCharacterTask(currentCharacter.id));
+                
+                switch(input.value.toLowerCase().slice(1)){
+                    case "heal":
+                        if(current_percentage_life < 100)
+                        progress_life.setAttribute("value", `${current_percentage_life + 10}`);
+                        break;
+                    case "feed":
+                        if(current_percentage_hunger < 100)
+                        progress_hunger.setAttribute("value", `${current_percentage_hunger + 10}`);
+                        break;
+                    case getCharacterChatTask(currentCharacter.id):
+                        if(current_percentage_task < 100)
+                        progress_task.setAttribute("value", `${current_percentage_task + 10}`);
+                        break;
+                    default:
+                        break;
+                }
+                addChatLog(input.value);
+                resetChatPrediction();
+                input.value = "";
+            }
+            
+        }
+    }
 }
 
 export function buttonEvent(){

@@ -53,7 +53,7 @@
         }
     },
     "tasks": {
-        "mine": "./pickaxe.png",
-        "build": "./wood.png"
+        "mine": "./images/items/pickaxe.png",
+        "build": "./images/items/wood.png"
     }
 }

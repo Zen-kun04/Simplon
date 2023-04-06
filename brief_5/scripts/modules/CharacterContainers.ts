@@ -22,6 +22,11 @@ export function getCharacter(id: string): HTMLElement | null{
     return container;
 }
 
+export function getCharacterTask(characterName: string): string{
+    const keys = Object.keys(config.characters[characterName].low_speed);    
+    return keys[0];
+}
+
 export function createCharacter(id: string, visible: boolean = true): HTMLElement {
     const charactersDiv: HTMLElement | null = document.getElementById("characters");
     const characterBody: HTMLElement = document.createElement('div');

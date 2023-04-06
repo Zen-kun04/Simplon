@@ -3,12 +3,34 @@
 body {
     background-image: url(../../images/death-background-mobile.png);
     background-repeat: no-repeat;
-
+    background-size: cover;
     h1,
     p {
         font-family: "Minecraft";
         font-size: 20px;
         color: white;
+    }
+    button {
+        &:hover {
+            background-color: #6989a4;
+            cursor: pointer;
+        }
+
+        width: 60vw;
+        height: 6vh;
+        font-family: "Minecraft";
+        background-color: #676464;
+        color: #FFFFFF;
+        box-shadow: inset 0px -3px rgba(0, 0, 0, 0.351);
+        max-width: 150px;
+    }
+
+    #screen {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50%;
     }
 
 }

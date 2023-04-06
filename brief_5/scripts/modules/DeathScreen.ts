@@ -13,13 +13,14 @@ export async function DeathScreen(points: number){
     const oofSound = document.getElementById("oof")! as HTMLAudioElement;
     oofSound.volume = 0.2;
     oofSound.play();
-    const deathMessage: HTMLElement = document.createElement('p');
+    const deathMessage = document.querySelector('p#death-message') as HTMLElement;
     deathMessage.textContent = "Go to the f#cking mine 💀";
-    const scoreMessage: HTMLElement = document.createElement('p');
+    const scoreMessage = document.querySelector('p#score') as HTMLElement;
     scoreMessage.textContent = `Score: ${points}`;
-
-    const body: HTMLElement = document.querySelector('body')!;
-    body.appendChild(deathMessage);
-    body.appendChild(scoreMessage);
+    const button = document.querySelector("button#restart") as HTMLElement;
+    button.addEventListener('click', () => {
+        location.reload();
+    })
+    
     
 }
