@@ -12,6 +12,12 @@ Food values (numbers) are the percentages that will be added to the hunger bar w
 ---
 - [ ] Fully responsive (mobile, tablet & desktop)
 - [x] Everything organized (folders, styles, scripts, etc)
-- [ ] Add more sections to the config.json
-- [ ] Add animations & transitions (🤓in process🤓)
-- [ ] Finish the TODO list 🤣
+- [x] Add more sections to the config.json
+- [x] Add animations & transitions (🤓in process🤓)
+- [x] Finish the TODO list 🤣
+- [x] Progressbars working correctly
+- [x] Better styles
+- [x] Chat/Commands (bonus)
+- [x] Command prediction
+- [x] Points
+- [x] Sounds
