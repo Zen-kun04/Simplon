@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.scss">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <p>Le model à reproduire</p>
+
+            <div class="cardsWrapper">
+                <!-- DEBUT MODEL A REPRODUIRE -->
+                <div class="departmentCard">
+                    <div class="departmentCardHeader"></div>
+                    <div class="departmentCardBody">
+                        <p>Nom : {le_nom_de_la_region}</p>
+                        <p>Code : {le_code_de_la_region}</p>
+                    </div>
+                </div>
+                <!-- FIN MODEL A REPRODUIRE -->
+            </div>
+
+            <div class="wrapper">
+                <!-- TARGET -->
+                <div id="domTarget" class="cardsWrapper">
+                    <!-- CARTES A INJECTER ICI -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script.ts" type="module"></script>
+</body>
+
+</html>
