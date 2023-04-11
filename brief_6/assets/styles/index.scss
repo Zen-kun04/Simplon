@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    header {
+        display: flex;
+        justify-content: space-between;
+        background-color: #222222;
+        padding-bottom: 60px;
+
+        #left-side {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    main{
+        #first-movie {
+            height: 335px;
+            background-size: cover;
+            background-position-x: -150px;
+            background-repeat: no-repeat;
+            h1.title {
+                position: absolute;
+                bottom: 0;
+                width: 50%;
+                font-size: 24px;
+            }
+        }
+        div.movie-list {
+            
+            div.carousel {
+                display: flex;
+                gap: 5px;
+                overflow: scroll;
+                &::-webkit-scrollbar{
+                    display: none;
+                }
+                img {
+                    width: 30%;
+                }
+            }
+        }
+        
+    }
+}
