@@ -1,0 +1,22 @@
+.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 50%;
+    margin: 100px auto;
+    list-style: none;
+}
+
+.letter {
+    width: 40px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.letter:hover {
+    color: red;
+    border: 1px solid red;
+}

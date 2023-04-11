@@ -1,0 +1,48 @@
+{
+    "questions": [
+        {
+            "title": "Combien fait 1 + 1?",
+            "answers": [
+                "7.5",
+                "0",
+                "2",
+                "Aucune réponse valide"
+            ],
+            "correct": 2,
+            "random": true
+        },
+        {
+            "title": "Quelle est la capitale de la France?",
+            "answers": [
+                "Madrid",
+                "Lisbone",
+                "Portugal",
+                "Paris"
+            ],
+            "correct": 3,
+            "random": true
+        },
+        {
+            "title": "Qui suis-je?",
+            "answers": [
+                "Macron",
+                "Baguette"
+            ],
+            "correct": 1,
+            "random": false
+        },
+        {
+            "title": "Qui suis-je pas?",
+            "answers": [
+                "Macron",
+                "Baguette"
+            ],
+            "correct": 0,
+            "random": true
+        }
+    ],
+    "sensibilisation": {
+        "title": "Pourquoi apprendre?",
+        "description": "J'sais pas quoi dire mdr"
+    }
+}

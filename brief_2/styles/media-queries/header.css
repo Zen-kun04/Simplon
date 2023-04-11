@@ -1,0 +1,40 @@
+@media screen and (min-width: 1048px) {
+    header div #span {
+        display: none;
+    }
+
+    header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    header > div > #nav-menu {
+        display: flex;
+        background-color: unset;
+        overflow: unset;
+        margin-top: 20px;
+    }
+
+    header > div > #nav-menu > ul {
+        display: flex;
+        flex-direction: row;
+        background-color: unset;
+    }
+
+    header > div > #nav-menu > ul > li {
+        padding: 10px 20px;
+        border-bottom: none;
+    }
+
+    header > div > #nav-menu > ul > li a{
+        font-size: 12px;
+        color: white;
+        white-space: nowrap;
+    }
+
+    header > div > #nav-menu > ul > li:last-child{
+        margin-right: 80px;
+    }
+
+}

@@ -1,0 +1,52 @@
+.answer:first-child{
+    margin-top: 5vh;
+}
+
+#answers > .answer:last-child{
+    margin-bottom: 2vh;
+}
+
+.answer {
+    width: 60%;
+    height: 10vh;
+    box-shadow: 4px 4px 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.answer:hover {
+    cursor: pointer;
+}
+
+.answer:not(#blue) {
+    margin-bottom: 2vh;
+}
+
+#result {
+    margin-top: 10%;
+}
+
+.answer#play{
+    transition: all 500ms;
+}
+
+.answer#play:hover {
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#answerResultParagraph{
+    font-weight: bold;
+    font-size: 32px;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+#answerResultParagraphNextQuestion{
+    font-size: 28px;
+}
+
+#answerResultParagraphSeconds{
+    font-size: 34px;
+}

@@ -1,0 +1,27 @@
+@media screen and (min-width: 952px) {
+    header > div > span{
+        display: none;
+    }
+    header > div:last-child {
+        background-color: transparent;
+    }
+    body > header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    body > header > div:last-child{
+        width: 50%;
+        background-color: unset;
+    }
+
+    header > div > #nav-menu > ul {
+        display: flex;
+    }
+    
+    header > div > #nav-menu > ul > li {
+        padding: 10px 20px;
+    }
+}

@@ -1,0 +1,45 @@
+
+@media screen and (min-width: 992px) {
+    footer {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        height: 20%;
+    }
+
+    footer > div > #direction {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    footer > div#second > h2 {
+        margin-top: 20px;
+    }
+
+    footer > div#fourth {
+        margin-bottom: 45px;
+    }
+
+    footer > div > #direction > #separator-two {
+        width: 1px;
+        height: 100px;
+        background-color: rgb(107, 107, 107);
+        margin: auto;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    footer .separator {
+        display: none;
+    }
+
+    footer > div#fourth {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+
+
+
+}

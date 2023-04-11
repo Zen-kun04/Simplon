@@ -1,0 +1,106 @@
+@import url(./modules/progressbar.scss);
+@import url(../general/fonts.scss);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+main {
+    background-image: url(../../images/background2.png);
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #character {
+        width: 45vw;
+        height: 34vh;
+        margin-top: 15.8vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .progress-increment {
+        width: 30px;
+        height: 30px;
+    }
+
+    .progress-item {
+        width: 15px;
+        height: 15px;
+    }
+
+    #main-progressbar {
+        display: grid;
+        grid-template-columns: 8fr 1fr 8fr;
+        grid-template-rows: repeat(2, 1fr);
+        margin-top: 3vh;
+    }
+
+    #hotbar-container {
+        width: 100vw;
+    }
+
+    #hotbar {
+        width: 90vw;
+        max-width: 585px;
+        max-height: 65px;
+        background-color: rgb(205, 204, 204);
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        // border-left: 1.5vw solid rgb(205, 204, 204);
+        // border-right: 1.5vw solid rgb(205, 204, 204);
+    }
+
+    #slot {
+
+        &:first-child {
+            margin-left: 2vw;
+        }
+
+        &:last-child {
+            margin-right: 2vw;
+        }
+        max-width: 51px;
+        max-height: 51px;
+        width: 8vw;
+        height: 8vw;
+        background-color: rgb(165, 165, 165);
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        box-shadow: -2px -2px 0px black, 2px 2px 0px white;
+    }
+
+    #chat-div {
+        margin-top: 5px;
+        background-color: rgb(68, 68, 68);
+        width: 90%;
+        height: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        
+        #chat-input {
+            width: 100%;
+            height: 20%;
+            border: unset;
+            color: #fff;
+            background-color: #696969;
+            font-family: "Minecraft";
+        }
+
+        #chat-predict {
+            width: 100%;
+            height: 0px;
+            background-color: #f7e4e4;
+        }
+    }
+
+
+}

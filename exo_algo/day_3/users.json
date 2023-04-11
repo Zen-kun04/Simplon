@@ -1,0 +1,39 @@
+{
+    "utilisateurs": [
+      {
+        "nom": "Dupont",
+        "prenom": "Marie",
+        "email": "d.marie@gmail.com",
+        "mot_de_passe": "1234",
+        "role": "Administrateur"
+      },
+      {
+        "nom": "Martin",
+        "prenom": "Pierre",
+        "email": "m.pierre@gmail.com",
+        "mot_de_passe": "password",
+        "role": "Invité"
+      },
+      {
+        "nom": "Garcia",
+        "prenom": "Ana",
+        "email": "g.ana@gmail.com",
+        "mot_de_passe": "0000",
+        "role": "Administrateur"
+      },
+      {
+        "nom": "Smith",
+        "prenom": "John",
+        "email": "s.john@gmail.com",
+        "mot_de_passe": "simplon",
+        "role": "Invité"
+      },
+      {
+        "nom": "Nguyen",
+        "prenom": "Thanh",
+        "email": "n.thanh@gmail.com",
+        "mot_de_passe": "admin",
+        "role": "Administrateur"
+      }
+    ]
+  }

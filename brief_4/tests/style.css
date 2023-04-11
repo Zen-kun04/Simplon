@@ -1,0 +1,49 @@
+:root {
+    --gradient: linear-gradient(
+        45deg,
+        rgb(137, 22, 137),
+        rgb(208, 50, 208),
+        rgb(240, 144, 35),
+        rgb(248, 255, 55)
+    );
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    width: 88px;
+}
+
+.inner {
+    width: 0px;
+    border-bottom: 1px solid black;
+    height: 0px;
+    margin: 0 auto;
+    transition: all 500ms;
+}
+
+div:hover .inner{
+    width: 88px;
+}
+
+div:hover {
+    cursor: pointer;
+}
+
+body {
+    background: var(--gradient);
+    background-size: 400%;
+    animation: background-move 10s infinite alternate;
+}
+
+@keyframes background-move {
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
+}

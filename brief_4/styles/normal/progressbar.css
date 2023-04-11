@@ -1,0 +1,29 @@
+#progressbar-timer {
+    width: 50%;
+    height: 5vh;
+    border: 1px solid white;
+    border-radius: 25px;
+}
+
+#progressbar-timer-in {
+    background-color: rgb(97, 248, 47);
+    width: 0%;
+    height: 5vh;
+    animation: progress 10s linear;
+    border-radius: 25px;
+}
+
+@keyframes progress {
+    0% {
+        background-color: green;
+    }
+    50%{
+        background-color: yellow;
+    }
+    80% {
+        background-color: orange;
+    }
+    100% {
+        background-color: red;
+    }
+}

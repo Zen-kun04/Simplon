@@ -1,0 +1,23 @@
+@import url(fonts.css);
+@import url(header.css);
+@import url(main-banner.css);
+@import url(main-about.css);
+@import url(main-gallery.css);
+@import url(main-founder.css);
+@import url(main-articles.css);
+@import url(main-contact.css);
+@import url(footer.css);
+
+@import url(media-queries/header.css);
+@import url(media-queries/main-banner.css);
+@import url(media-queries/main-about.css);
+@import url(media-queries/main-gallery.css);
+@import url(media-queries/main-founders.css);
+@import url(media-queries/main-articles.css);
+@import url(media-queries/main-contact.css);
+@import url(media-queries/footer.css);
+
+
+main {
+    width: 100%;
+}

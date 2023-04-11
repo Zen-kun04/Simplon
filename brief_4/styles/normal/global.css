@@ -1,0 +1,40 @@
+@import url(../responsive/global.css);
+@import url(./question.css);
+@import url(./colors.css);
+@import url(./answer.css);
+@import url(./progressbar.css);
+@import url(./fonts.css);
+@import url(./sensibilisation.css);
+@import url(./stats.css);
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "TiltWarp";
+}
+
+body {
+    background-image: url(../../images/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.errorMessage{
+    color: rgb(255, 0, 0);
+    font-size: 16px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 15px;
+    width: 95%;
+    text-align: center;
+}

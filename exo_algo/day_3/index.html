@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.scss">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Day 3</h1>
+    <main>
+        <div class="container">
+            <p class="exoTitle">Exo #1</p>
+            <div class="inputWrapper">
+                <label for="email">Saisir un model </label>
+                <select name="phone" id="phone">
+                    <option value="iphone_13">Iphone 13</option>
+                    <option value="iphone_14">Iphone 14</option>
+                    <option value="samsung_s14">Samsung s14</option>
+                    <option value="samsung_s15">Samsung s15</option>
+                    <option value="xiaomi_note_10">Xiaomi note 10</option>
+                    <option value="xiaomi_pixel_6">Xiaomi pixel 6</option>
+                </select>
+            </div>
+            <button id="boutonExo1">Rechercher</button>
+            <p id="infoExo1"></p>
+        </div>
+        <div class="container">
+            <p class="exoTitle">Exo #2</p>
+            <p id="errorExo2" class="errorMsg"></p>
+            <div class="inputWrapper">
+                <label for="email">Adresse email</label>
+                <input type="text" name="email" id="email">
+            </div>
+            <div class="inputWrapper">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password">
+            </div>
+            <button id="boutonExo2">Me connecter</button>
+            <p id="successExo2" class="successMsg"></p>
+        </div>
+    </main>
+    <script src="./script.ts" type="module"></script>
+</body>
+
+</html>

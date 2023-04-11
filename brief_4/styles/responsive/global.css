@@ -1,0 +1,18 @@
+@media screen and (min-width: 612px) {
+    #question > #content > #answers {
+        flex-direction: row !important;
+        justify-content: space-evenly;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    #answers > .answer {
+        width: 40% ;
+        margin-bottom: unset ;
+        margin-top: unset ;
+    }
+
+    #answers > .errorMessage{
+        width: 55%;
+    }
+}

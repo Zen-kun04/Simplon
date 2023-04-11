@@ -1,0 +1,98 @@
+footer{
+    width: 100%;
+    height: 666px;
+    padding-top: 40px;
+    background-color: #373a3c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer div:not(.separator){
+    text-align: center;
+    padding: 10px 0;
+}
+
+footer .separator{
+    width: 95%;
+    height: 1px;
+    background-color: rgb(107, 107, 107);
+}
+
+footer div:not(.separator){
+    margin-top: 20px;
+}
+
+footer #fourth .socials {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+footer #fourth .socials div{
+    background-color: #f1f1f1;
+    border-radius: 50px;
+    padding: 5px 8px;
+}
+
+footer img{
+    width: 10px;
+    height: 10px;
+}
+
+footer h2{
+    color: white;
+    font-family: "Inter Medium";
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+footer #first p{
+    color: #cecece;
+    font-family: "Inter Regular";
+    font-size: 12px;
+    line-height: 25px;
+}
+
+footer #first p:last-child{
+    margin-bottom: 10px;
+}
+
+footer #first h2{
+    font-family: "Inter Regular";
+    color: white;
+    font-size: 20px;
+}
+
+footer #first h2::first-letter{
+    color: #f7c552;
+    font-size: 26px;
+}
+
+footer > div:not(#first) > h2{
+    margin-bottom: 30px;
+}
+
+footer > div:not(#first):not(#third) p{
+    font-family: "Inter Regular";
+    font-size: 12px;
+    color: white;
+    letter-spacing: 1px;
+    width: 70%;
+    margin: 0 auto;
+    line-height: 25px;
+}
+
+footer > div:not(#first) > p:last-child{
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+
+footer > #third > p{
+    font-family: "Inter Regular";
+    font-size: 12px;
+    color: white;
+    letter-spacing: 1px;
+    width: 100%;
+    margin: 0 auto;
+}
