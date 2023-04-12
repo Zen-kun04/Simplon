@@ -40,7 +40,6 @@ getMarvelMovies().then((movies) => {
     first_title_movie_section.textContent = "Marvel selection";
     
     movies["results"].forEach((movie) => {
-        console.log(movie);
         const poster_path: string = movie["poster_path"];
         const image: string = movieDB_image_uri + poster_path;
         const imgage_element: HTMLImageElement = document.createElement('img');
@@ -63,7 +62,6 @@ getHorrorComedyMovies().then((movies) => {
     second_title_movie_section.textContent = "The most terrifying laughs";
     
     movies["results"].forEach((movie) => {
-        console.log(movie);
         const poster_path: string = movie["poster_path"];
         const image: string = movieDB_image_uri + poster_path;
         const imgage_element: HTMLImageElement = document.createElement('img');
@@ -71,4 +69,66 @@ getHorrorComedyMovies().then((movies) => {
         second_carousel_movie_section.appendChild(imgage_element);
         
     })
+})
+
+async function getIDs(query: string){
+    const request = await fetch(`https://api.themoviedb.org/3/search/keyword?api_key=${movieDB_token}&query=${query}&page=1`, options)
+    const data = await request.json();
+    return data;
+}
+
+async function getSearchResults(search: string){
+    const ids = await getIDs(search);
+    console.log(ids);
+    
+    let a = [];
+    console.log('start');
+    for(const res of ids.results) {
+        
+        
+        const request = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${movieDB_token}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_keywords=${res.id}&with_watch_monetization_types=flatrate`, options)
+        await request.json().then((d) => {
+            a = a.concat(d.results);
+        });
+        console.log(a);
+        
+        
+    }
+    console.log('Finito');
+    
+    return a;
+    
+}
+
+const main_copy = document.getElementsByTagName('main')[0].cloneNode(true);
+const search_input = document.querySelector("input#right-side") as HTMLInputElement;
+search_input.addEventListener('keypress', (e: KeyboardEvent) => {
+    if(e.key === "Enter"){
+        const value: string = search_input.value;
+        if(value){
+            // Not null
+            let what_did_i_searched = document.querySelector("header > p#search-result-paragraph");
+            if(!what_did_i_searched){
+                what_did_i_searched = document.createElement('p');
+                what_did_i_searched.id = "search-result-paragraph";
+                document.getElementsByTagName('header')[0].insertBefore(what_did_i_searched, search_input);
+            }
+            what_did_i_searched.textContent = `Results found for "${value}"`;
+            
+            document.getElementsByTagName('main')[0].remove();
+            const new_main: HTMLElement = document.createElement('main');
+            const search_img_container: HTMLDivElement = document.createElement('div');
+            search_img_container.id = "search-images-container";
+            getSearchResults(value.trim()).then((data) => {
+                data.forEach((d) => {
+                    const img = document.createElement('img') as HTMLImageElement;
+                    img.src = movieDB_image_uri + d["poster_path"];
+                    search_img_container.appendChild(img);
+                })
+                new_main.appendChild(search_img_container);
+                document.getElementsByTagName('body')[0].insertBefore(new_main, document.getElementsByTagName('footer')[0]);
+            })
+        }
+    }
+    
 })
