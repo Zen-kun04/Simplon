@@ -12,13 +12,55 @@ let copy_all_filtered_results: any[] = [];
 
 const options = {method: 'GET'};
 
+
+
+
+
 function imageEvents(){
     const img = document.querySelectorAll("img");
 
     img.forEach((i) => {
         i.addEventListener('click', () => {        
-            i.style.transform = "scale(5)";
+            // i.style.transform = "scale(5)";
+            let random_div;
+            if(!document.querySelector("div#popup-info")){ // Check if the popup is not already shown
+                random_div = document.createElement('div') as HTMLDivElement;
+                random_div.id = "popup-info";
+                document.getElementsByTagName('main')[0].appendChild(random_div);
+                setTimeout(() => {
+                    random_div.style.width = "40%";
+                    random_div.style.height = "45vw";
+                }, 200);
+                random_div.appendChild(i.cloneNode(true));
+            }else {
+                document.querySelector('div#popup-info')?.remove();
+                random_div = document.createElement('div') as HTMLDivElement;
+                random_div.id = "popup-info";
+                document.getElementsByTagName('main')[0].appendChild(random_div);
+                setTimeout(() => {
+                    random_div.style.width = "40%";
+                    random_div.style.height = "45vw";
+                }, 200);
+                random_div.appendChild(i.cloneNode(true));
+            }
+
+            const movie_title: HTMLParagraphElement = document.createElement('p');
+            
+            getMovieInfo(i.id).then((data) => {
+                movie_title.textContent = data.title;
+                random_div.appendChild(movie_title);
+            })
+            
+            
+            
+            
         })
+    })
+    document.getElementsByTagName("body")[0].addEventListener('click', (e: Event) => {
+        const clicked_item = e.target as HTMLElement;
+        if(clicked_item.id !== "popup-info" && document.querySelector("div#popup-info") !== null){
+            document.querySelector("div#popup-info")?.remove();
+        }
     })
 }
 
@@ -54,6 +96,7 @@ getMarvelMovies().then((movies) => {
         const image: string = movieDB_image_uri + poster_path;
         const imgage_element: HTMLImageElement = document.createElement('img');
         imgage_element.src = image;
+        imgage_element.id = movie.id;
         first_carousel_movie_section.appendChild(imgage_element);
         
     })
@@ -67,6 +110,12 @@ async function getHorrorComedyMovies() {
     return data;
 }
 
+async function getMovieInfo(movie_id: number | string){
+    const request = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=${movieDB_token}`);
+    const data = await request.json();
+    return data
+}
+
 getHorrorComedyMovies().then((movies) => {
     const second_title_movie_section = document.querySelectorAll("main > div.movie-list > p.title")[1] as HTMLParagraphElement;
     const second_carousel_movie_section = document.querySelectorAll("main > div.movie-list > div.carousel")[1] as HTMLDivElement;
@@ -77,6 +126,7 @@ getHorrorComedyMovies().then((movies) => {
         const image: string = movieDB_image_uri + poster_path;
         const imgage_element: HTMLImageElement = document.createElement('img');
         imgage_element.src = image;
+        imgage_element.id = movie.id;
         second_carousel_movie_section.appendChild(imgage_element);
         
     })
