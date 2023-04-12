@@ -1,15 +1,25 @@
+import { pageChangeEvent } from "./events";
+
 require('dotenv').config()
 
+
+
 const movieDB_token: string = process.env.TOKEN!;
-const movieDB_image_uri: string = "https://www.themoviedb.org/t/p/original";
+export const movieDB_image_uri: string = "https://www.themoviedb.org/t/p/original";
 const marvel_keyword: number = 180547;
 const horror_comedy_keyword: number = 224636;
-
+let copy_all_filtered_results: any[] = [];
 
 const options = {method: 'GET'};
 
-function changePage(path_to_html: string) {
-    
+function imageEvents(){
+    const img = document.querySelectorAll("img");
+
+    img.forEach((i) => {
+        i.addEventListener('click', () => {        
+            i.style.transform = "scale(5)";
+        })
+    })
 }
 
 async function getDiscoverMovie() {
@@ -47,6 +57,7 @@ getMarvelMovies().then((movies) => {
         first_carousel_movie_section.appendChild(imgage_element);
         
     })
+    imageEvents();
 })
 
 
@@ -69,6 +80,7 @@ getHorrorComedyMovies().then((movies) => {
         second_carousel_movie_section.appendChild(imgage_element);
         
     })
+    imageEvents()
 })
 
 async function getIDs(query: string){
@@ -81,23 +93,19 @@ async function getSearchResults(search: string){
     const ids = await getIDs(search);
     console.log(ids);
     
-    let a = [];
-    console.log('start');
+    let all_results = [];
     for(const res of ids.results) {
-        
-        
         const request = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${movieDB_token}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_keywords=${res.id}&with_watch_monetization_types=flatrate`, options)
         await request.json().then((d) => {
-            a = a.concat(d.results);
+            all_results = all_results.concat(d.results);
         });
-        console.log(a);
-        
-        
     }
-    console.log('Finito');
     
-    return a;
-    
+    return all_results;
+}
+
+function pageChangeEventConnector(e: Event){
+    pageChangeEvent(e.target as HTMLParagraphElement, copy_all_filtered_results);
 }
 
 const main_copy = document.getElementsByTagName('main')[0].cloneNode(true);
@@ -120,15 +128,46 @@ search_input.addEventListener('keypress', (e: KeyboardEvent) => {
             const search_img_container: HTMLDivElement = document.createElement('div');
             search_img_container.id = "search-images-container";
             getSearchResults(value.trim()).then((data) => {
-                data.forEach((d) => {
+                const all_filtered_results: any[] = [];
+                let temporary_filtered_results: any[] = [];
+                for(const res of data) {
+                    if(temporary_filtered_results.length < 10 && !temporary_filtered_results.includes(res)){
+                        temporary_filtered_results.push(res);
+                    }
+                    if(temporary_filtered_results.length >= 10){
+                        all_filtered_results.push(temporary_filtered_results);
+                        temporary_filtered_results = [];
+                    }
+                }
+                if(temporary_filtered_results.length > 0){
+                    all_filtered_results.push(temporary_filtered_results);
+                    temporary_filtered_results = [];
+                }
+                all_filtered_results[0].forEach((d) => {
                     const img = document.createElement('img') as HTMLImageElement;
                     img.src = movieDB_image_uri + d["poster_path"];
                     search_img_container.appendChild(img);
                 })
                 new_main.appendChild(search_img_container);
                 document.getElementsByTagName('body')[0].insertBefore(new_main, document.getElementsByTagName('footer')[0]);
+                const pages_div_container: HTMLDivElement = document.createElement('div');
+                pages_div_container.id = "pages-container";
+                for(let i = 0; i < all_filtered_results.length; i++){
+                    const page: HTMLParagraphElement = document.createElement('p');
+                    page.classList.add("page_paragraph");
+                    page.id = i.toString();
+                    page.textContent = (i+1).toString();
+                    pages_div_container.appendChild(page);
+                    page.addEventListener('click', pageChangeEventConnector);
+                }
+
+                document.getElementsByTagName('main')[0].appendChild(pages_div_container);
+                copy_all_filtered_results = [...all_filtered_results]
+                all_filtered_results.length = 0;
             })
         }
     }
     
 })
+
+

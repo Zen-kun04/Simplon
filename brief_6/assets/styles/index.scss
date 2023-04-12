@@ -60,17 +60,20 @@ body {
             }
             div.carousel {
                 display: flex;
+                position: relative;
+                z-index: 1;
                 gap: 5px;
-                overflow: scroll;
+                overflow-x: scroll;
+                overflow-y: hidden;
                 &::-webkit-scrollbar{
                     display: none;
                 }
                 
                 
                 img {
-                    position: relative;
-                    z-index: 1;
                     cursor: pointer;
+                    z-index: 0.5;
+                    position: relative;
                     transition: transform 500ms;
                     &:hover {
                         transform: scale(1.2);
@@ -81,5 +84,17 @@ body {
             }
         }
         
+        #pages-container {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            .page_paragraph {
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+
     }
 }

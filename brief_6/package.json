@@ -13,9 +13,7 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.3",
     "dotenv": "^16.0.3",
-    "os-browserify": "^0.3.0",
     "parcel": "^2.8.3",
-    "path-browserify": "^1.0.1",
     "typescript": "^5.0.4"
   }
 }
