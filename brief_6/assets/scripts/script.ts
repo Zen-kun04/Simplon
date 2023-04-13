@@ -56,12 +56,12 @@ function imageEvents(){
             
         })
     })
-    document.getElementsByTagName("body")[0].addEventListener('click', (e: Event) => {
-        const clicked_item = e.target as HTMLElement;
-        if(clicked_item.id !== "popup-info" && document.querySelector("div#popup-info") !== null){
-            document.querySelector("div#popup-info")?.remove();
-        }
-    })
+    // document.getElementsByTagName("body")[0].addEventListener('click', (e: Event) => {
+    //     const clicked_item = e.target as HTMLElement;
+    //     if(clicked_item.id !== "popup-info" && document.querySelector("div#popup-info") !== null){
+    //         document.querySelector("div#popup-info")?.remove();
+    //     }
+    // })
 }
 
 async function getDiscoverMovie() {
