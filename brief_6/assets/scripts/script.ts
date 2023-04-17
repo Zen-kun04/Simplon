@@ -16,11 +16,12 @@ const options = {method: 'GET'};
 
 
 
-function imageEvents(){
+export function imageEvents(){
     const img = document.querySelectorAll("img");
 
     img.forEach((i) => {
-        i.addEventListener('click', () => {        
+        i.addEventListener('click', (e: Event) => {
+            e.stopPropagation();        
             // i.style.transform = "scale(5)";
             let random_div;
             if(!document.querySelector("div#popup-info")){ // Check if the popup is not already shown
@@ -38,17 +39,30 @@ function imageEvents(){
                 random_div.id = "popup-info";
                 document.getElementsByTagName('main')[0].appendChild(random_div);
                 setTimeout(() => {
-                    random_div.style.width = "40%";
-                    random_div.style.height = "45vw";
+                    if(window.innerWidth <= 600){
+                        random_div.style.width = "65%";
+                        random_div.style.height = "100vw";
+                    }else{
+                        random_div.style.width = "40%";
+                        random_div.style.height = "40vw";
+                    }
+                    
                 }, 200);
                 random_div.appendChild(i.cloneNode(true));
             }
 
             const movie_title: HTMLParagraphElement = document.createElement('p');
-            
+            const movie_overview: HTMLParagraphElement = document.createElement('p');
+            movie_overview.id = "movie-overview";
             getMovieInfo(i.id).then((data) => {
-                movie_title.textContent = data.title;
-                random_div.appendChild(movie_title);
+                setTimeout(() => {
+                    movie_title.textContent = data.title;
+                    random_div.appendChild(movie_title);
+                    movie_overview.textContent = data.overview;
+                    random_div.appendChild(movie_overview);
+                }, 500)
+                
+                
             })
             
             
@@ -56,13 +70,33 @@ function imageEvents(){
             
         })
     })
-    // document.getElementsByTagName("body")[0].addEventListener('click', (e: Event) => {
-    //     const clicked_item = e.target as HTMLElement;
-    //     if(clicked_item.id !== "popup-info" && document.querySelector("div#popup-info") !== null){
-    //         document.querySelector("div#popup-info")?.remove();
-    //     }
-    // })
+    
 }
+
+document.addEventListener('click', (e: Event) => {
+    const clicked_item = e.target as HTMLElement;
+    
+    if((document.querySelector("div#popup-info") !== null) && clicked_item.id !== "popup-info" && clicked_item.parentElement?.id !== "popup-info"){
+        const popup = document.querySelector("div#popup-info") as HTMLDivElement;
+        
+        setTimeout(() => {
+            popup.childNodes.forEach((node) => {
+                const nodeA = node as HTMLElement;
+                if(nodeA.tagName === "P")
+                nodeA.style.opacity = "0";
+    
+                
+            })
+            popup.style.width = "0px";
+            popup.style.height = "0px";
+            
+            
+        }, 200)
+        setTimeout(() => {
+            popup.remove();
+        }, 450)
+    }
+})
 
 async function getDiscoverMovie() {
     const request = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${movieDB_token}&language=fr-FR&sort_by=popularity.desc`, options)
@@ -92,7 +126,7 @@ getMarvelMovies().then((movies) => {
     first_title_movie_section.textContent = "Marvel selection";
     
     movies["results"].forEach((movie) => {
-        const poster_path: string = movie["poster_path"];
+        const poster_path: string = movie["backdrop_path"];
         const image: string = movieDB_image_uri + poster_path;
         const imgage_element: HTMLImageElement = document.createElement('img');
         imgage_element.src = image;
@@ -111,7 +145,7 @@ async function getHorrorComedyMovies() {
 }
 
 async function getMovieInfo(movie_id: number | string){
-    const request = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=${movieDB_token}`);
+    const request = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}?api_key=${movieDB_token}&language=fr-FR`);
     const data = await request.json();
     return data
 }
@@ -122,7 +156,7 @@ getHorrorComedyMovies().then((movies) => {
     second_title_movie_section.textContent = "The most terrifying laughs";
     
     movies["results"].forEach((movie) => {
-        const poster_path: string = movie["poster_path"];
+        const poster_path: string = movie["backdrop_path"];
         const image: string = movieDB_image_uri + poster_path;
         const imgage_element: HTMLImageElement = document.createElement('img');
         imgage_element.src = image;
@@ -141,7 +175,6 @@ async function getIDs(query: string){
 
 async function getSearchResults(search: string){
     const ids = await getIDs(search);
-    console.log(ids);
     
     let all_results = [];
     for(const res of ids.results) {
@@ -159,7 +192,8 @@ function pageChangeEventConnector(e: Event){
 }
 
 const main_copy = document.getElementsByTagName('main')[0].cloneNode(true);
-const search_input = document.querySelector("input#right-side") as HTMLInputElement;
+const search_div = document.querySelector("div#right-side") as HTMLSpanElement;
+const search_input = document.querySelector("div#right-side input") as HTMLInputElement;
 search_input.addEventListener('keypress', (e: KeyboardEvent) => {
     if(e.key === "Enter"){
         const value: string = search_input.value;
@@ -169,18 +203,21 @@ search_input.addEventListener('keypress', (e: KeyboardEvent) => {
             if(!what_did_i_searched){
                 what_did_i_searched = document.createElement('p');
                 what_did_i_searched.id = "search-result-paragraph";
-                document.getElementsByTagName('header')[0].insertBefore(what_did_i_searched, search_input);
+                document.getElementsByTagName('header')[0].insertBefore(what_did_i_searched, search_div);
             }
-            what_did_i_searched.textContent = `Results found for "${value}"`;
             
-            document.getElementsByTagName('main')[0].remove();
+            
+            const main = document.getElementsByTagName('main')[0];
+            if(main){
+                main.remove()
+            }
             const new_main: HTMLElement = document.createElement('main');
             const search_img_container: HTMLDivElement = document.createElement('div');
             search_img_container.id = "search-images-container";
             getSearchResults(value.trim()).then((data) => {
                 const all_filtered_results: any[] = [];
                 let temporary_filtered_results: any[] = [];
-                for(const res of data) {
+                for(const res of data) {                    
                     if(temporary_filtered_results.length < 10 && !temporary_filtered_results.includes(res)){
                         temporary_filtered_results.push(res);
                     }
@@ -193,11 +230,25 @@ search_input.addEventListener('keypress', (e: KeyboardEvent) => {
                     all_filtered_results.push(temporary_filtered_results);
                     temporary_filtered_results = [];
                 }
-                all_filtered_results[0].forEach((d) => {
-                    const img = document.createElement('img') as HTMLImageElement;
-                    img.src = movieDB_image_uri + d["poster_path"];
-                    search_img_container.appendChild(img);
-                })
+                if(all_filtered_results.length > 0){
+                    what_did_i_searched!.textContent = `Results found for "${value}"`;
+                    console.log(all_filtered_results);
+                    
+                    all_filtered_results[0].forEach((d) => {
+                        const img = document.createElement('img') as HTMLImageElement;
+                        if(d["backdrop_path"] !== null){
+                            img.src = movieDB_image_uri + d["backdrop_path"];
+                        }else{
+                            img.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQclJBjkZUvmktXLQQWF1HCW5lih1l8eg2M0w&usqp=CAU"
+                        }
+                        img.id = d.id;
+                        
+                        search_img_container.appendChild(img);
+                    })
+                }else{
+                    what_did_i_searched!.textContent = `No results found for "${value}"`;
+                    
+                }
                 new_main.appendChild(search_img_container);
                 document.getElementsByTagName('body')[0].insertBefore(new_main, document.getElementsByTagName('footer')[0]);
                 const pages_div_container: HTMLDivElement = document.createElement('div');
@@ -214,6 +265,7 @@ search_input.addEventListener('keypress', (e: KeyboardEvent) => {
                 document.getElementsByTagName('main')[0].appendChild(pages_div_container);
                 copy_all_filtered_results = [...all_filtered_results]
                 all_filtered_results.length = 0;
+                imageEvents();
             })
         }
     }
@@ -221,3 +273,16 @@ search_input.addEventListener('keypress', (e: KeyboardEvent) => {
 })
 
 
+// Way to dynamically add the hamburger menu
+// {
+//     const width: number = window.innerWidth;
+//     if (width <= 690){
+//         const header: HTMLDivElement | null = document.querySelector("header div#left-side");
+//         if(header){
+//             const span: HTMLSpanElement = document.createElement('span');
+//             span.id = "hamburger";
+//             span.textContent = "\u2630";
+//             header.insertBefore(span, header.firstChild);
+//         }
+//     }
+// }
