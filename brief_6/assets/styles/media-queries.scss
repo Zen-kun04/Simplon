@@ -1,0 +1,18 @@
+@media screen and (min-width: 800px) {
+    div#left-side{
+        div#menu-title{
+            span#hamburger{
+                display: none;
+            }
+        }
+        ul {
+            display: flex !important;
+        }
+    }
+    div.carousel-container {
+        span {
+            display: unset !important;
+        }
+    }
+    
+}

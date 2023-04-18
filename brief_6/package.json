@@ -5,7 +5,7 @@
   "source": "templates/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx parcel build ./*.env templates/*.html assets/**/*.*",
+    "build": "npx parcel build templates/*.html assets/**/*.*",
     "start": "npx parcel"
   },
   "author": "",
@@ -13,9 +13,7 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.8.3",
     "dotenv": "^16.0.3",
-    "os-browserify": "^0.3.0",
     "parcel": "^2.8.3",
-    "path-browserify": "^1.0.1",
     "typescript": "^5.0.4"
   }
 }
