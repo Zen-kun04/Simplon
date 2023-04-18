@@ -9,5 +9,10 @@
             display: flex !important;
         }
     }
+    div.carousel-container {
+        span {
+            display: unset !important;
+        }
+    }
     
 }

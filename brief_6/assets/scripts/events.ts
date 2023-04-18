@@ -46,7 +46,7 @@ export function pageChangeEvent(element: HTMLParagraphElement, all_results: any[
             setTimeout(() => {
                 input_search.focus();
                 input_search.style.border = "1px solid white";
-                input_search.style.width = "80px";
+                input_search.style.width = "170px";
                 input_search.style.paddingRight = "15px";
                 input_search.style.marginRight = "20px";
             }, 1)
@@ -92,4 +92,28 @@ export function pageChangeEvent(element: HTMLParagraphElement, all_results: any[
             
         })
     }
+}
+
+
+{
+    const arrows = document.querySelectorAll("div.movie-list > div.carousel-container > span");
+    let pos = 0;
+    arrows.forEach((arrow) => {
+        arrow.addEventListener('click', () => {
+            if(arrow.id === "right-arrow")
+            pos += 1480;
+            else{
+                if(pos >= 1480){
+                    pos -= 1480;
+                }else{
+                    pos = 0;
+                }
+            }
+            
+            arrow.parentElement!.querySelector("div.movie-list > div.carousel-container > div.carousel")!.scroll({
+                left: pos,
+                behavior: "smooth"
+            })
+        })
+    })
 }

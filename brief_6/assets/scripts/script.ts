@@ -21,23 +21,39 @@ export function imageEvents(){
 
     img.forEach((i) => {
         i.addEventListener('click', (e: Event) => {
-            e.stopPropagation();        
+            e.stopPropagation();
+                
             // i.style.transform = "scale(5)";
             let random_div;
-            if(!document.querySelector("div#popup-info")){ // Check if the popup is not already shown
+            let popup_info_container;
+            if(!document.querySelector("div#popup-info-container")){ // Check if the popup is not already shown
                 random_div = document.createElement('div') as HTMLDivElement;
+                popup_info_container = document.createElement('div') as HTMLDivElement;
                 random_div.id = "popup-info";
-                document.getElementsByTagName('main')[0].appendChild(random_div);
+                popup_info_container.id = "popup-info-container";
+                // popup_info_container.style.width = "100%"
+                // popup_info_container.style.heigth = "100%"
+                popup_info_container.appendChild(random_div)
+
+                document.getElementsByTagName('main')[0].appendChild(popup_info_container);
                 setTimeout(() => {
-                    random_div.style.width = "40%";
-                    random_div.style.height = "45vw";
+                    if(window.innerWidth <= 600){
+                        random_div.style.width = "65%";
+                        random_div.style.height = "100vw";
+                    }else{
+                        random_div.style.width = "40%";
+                        random_div.style.height = "40vw";
+                    }
                 }, 200);
                 random_div.appendChild(i.cloneNode(true));
             }else {
-                document.querySelector('div#popup-info')?.remove();
+                document.querySelector('div#popup-info-container')?.remove();
                 random_div = document.createElement('div') as HTMLDivElement;
+                popup_info_container = document.createElement('div') as HTMLDivElement;
                 random_div.id = "popup-info";
-                document.getElementsByTagName('main')[0].appendChild(random_div);
+                popup_info_container.id = "popup-info-container";
+                popup_info_container.appendChild(random_div)
+                document.getElementsByTagName('main')[0].appendChild(popup_info_container);
                 setTimeout(() => {
                     if(window.innerWidth <= 600){
                         random_div.style.width = "65%";
@@ -51,15 +67,39 @@ export function imageEvents(){
                 random_div.appendChild(i.cloneNode(true));
             }
 
+            const movie_title_adult_div: HTMLDivElement = document.createElement('div');
             const movie_title: HTMLParagraphElement = document.createElement('p');
+            const movie_adult: HTMLParagraphElement = document.createElement('p');
             const movie_overview: HTMLParagraphElement = document.createElement('p');
+            const recommended: HTMLParagraphElement = document.createElement('p');
+            const release: HTMLParagraphElement = document.createElement('p');
+            const genres: HTMLParagraphElement = document.createElement('p');
             movie_overview.id = "movie-overview";
-            getMovieInfo(i.id).then((data) => {
+            getMovieInfo(i.id).then((data) => {                
+                movie_title_adult_div.id = "movie-title-adult-container";
+                movie_adult.textContent = "+18";
+                movie_adult.id = "adult";
+                recommended.textContent = `Recommended at ${Math.round(100 * (data.vote_average) / 10).toString()}%`;
+                release.textContent = `Release date: ${data.release_date.split('-', 1)[0]}`;
                 setTimeout(() => {
                     movie_title.textContent = data.title;
-                    random_div.appendChild(movie_title);
+                    movie_title_adult_div.appendChild(movie_title);
+                    if(data.overview)
                     movie_overview.textContent = data.overview;
+                    else
+                    movie_overview.textContent = "No description set.";
+
+                    if(data.adult === true){
+                        movie_title_adult_div.appendChild(movie_adult);
+                    }
+                    for(let genre of data.genres){
+                        genres.textContent += `${genre.name}, `
+                    }
+                    random_div.appendChild(movie_title_adult_div);
                     random_div.appendChild(movie_overview);
+                    random_div.appendChild(recommended);
+                    random_div.appendChild(release);
+                    random_div.appendChild(genres)
                 }, 500)
                 
                 
@@ -76,7 +116,7 @@ export function imageEvents(){
 document.addEventListener('click', (e: Event) => {
     const clicked_item = e.target as HTMLElement;
     
-    if((document.querySelector("div#popup-info") !== null) && clicked_item.id !== "popup-info" && clicked_item.parentElement?.id !== "popup-info"){
+    if((document.querySelector("div#popup-info") !== null) && clicked_item.id !== "popup-info" && clicked_item.parentElement?.id !== "popup-info" &&  clicked_item.parentElement?.id !== "movie-title-adult-container"){
         const popup = document.querySelector("div#popup-info") as HTMLDivElement;
         
         setTimeout(() => {
@@ -94,6 +134,7 @@ document.addEventListener('click', (e: Event) => {
         }, 200)
         setTimeout(() => {
             popup.remove();
+            document.querySelector("div#popup-info-container")?.remove();
         }, 450)
     }
 })
@@ -122,9 +163,8 @@ async function getMarvelMovies() {
 
 getMarvelMovies().then((movies) => {
     const first_title_movie_section = document.querySelectorAll("main > div.movie-list > p.title")[0] as HTMLParagraphElement;
-    const first_carousel_movie_section = document.querySelectorAll("main > div.movie-list > div.carousel")[0] as HTMLDivElement;
+    const first_carousel_movie_section = document.querySelectorAll("main > div.movie-list > div.carousel-container > div.carousel")[0] as HTMLDivElement;
     first_title_movie_section.textContent = "Marvel selection";
-    
     movies["results"].forEach((movie) => {
         const poster_path: string = movie["backdrop_path"];
         const image: string = movieDB_image_uri + poster_path;
@@ -152,7 +192,7 @@ async function getMovieInfo(movie_id: number | string){
 
 getHorrorComedyMovies().then((movies) => {
     const second_title_movie_section = document.querySelectorAll("main > div.movie-list > p.title")[1] as HTMLParagraphElement;
-    const second_carousel_movie_section = document.querySelectorAll("main > div.movie-list > div.carousel")[1] as HTMLDivElement;
+    const second_carousel_movie_section = document.querySelectorAll("main > div.movie-list > div.carousel-container > div.carousel")[1] as HTMLDivElement;
     second_title_movie_section.textContent = "The most terrifying laughs";
     
     movies["results"].forEach((movie) => {
@@ -167,22 +207,20 @@ getHorrorComedyMovies().then((movies) => {
     imageEvents()
 })
 
-async function getIDs(query: string){
-    const request = await fetch(`https://api.themoviedb.org/3/search/keyword?api_key=${movieDB_token}&query=${query}&page=1`, options)
-    const data = await request.json();
-    return data;
-}
+// async function getIDs(query: string){
+//     const request = await fetch(`https://api.themoviedb.org/3/search/keyword?api_key=${movieDB_token}&query=${query}&page=1`, options)
+//     const data = await request.json();
+//     return data;
+// }
 
 async function getSearchResults(search: string){
-    const ids = await getIDs(search);
+    // const ids = await getIDs(search);
     
     let all_results = [];
-    for(const res of ids.results) {
-        const request = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${movieDB_token}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_keywords=${res.id}&with_watch_monetization_types=flatrate`, options)
-        await request.json().then((d) => {
-            all_results = all_results.concat(d.results);
-        });
-    }
+    const request = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${movieDB_token}&language=fr-FR&query=${search}&page=1&include_adult=true`, options)
+    await request.json().then((d) => {
+        all_results = all_results.concat(d.results);
+    });
     
     return all_results;
 }
