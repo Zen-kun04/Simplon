@@ -114,11 +114,11 @@ body {
         div#popup-info-container{
             background-color: rgba(0, 0, 0, 0.471);
             width: 100%;
-            height: 100%;
+            height: calc(100% + 130px);
             position: absolute;
             top: 0;
             left: 0;
-            // transform: translate(-50%, -50%);
+            transform: translate(0, 0);
             z-index: 400;
             #popup-info {
                 width: 0px;
