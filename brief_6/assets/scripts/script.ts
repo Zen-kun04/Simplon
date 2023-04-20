@@ -217,9 +217,21 @@ async function getSearchResults(search: string){
     // const ids = await getIDs(search);
     
     let all_results = [];
-    const request = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${movieDB_token}&language=fr-FR&query=${search}&page=1&include_adult=true`, options)
-    await request.json().then((d) => {
-        all_results = all_results.concat(d.results);
+    const request = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${movieDB_token}&language=fr-FR&query=${search}&include_adult=false`, options)
+    await request.json().then(async (result) => {
+        const pages: number = result.total_pages;
+        for(let i = 1; i <= pages; i++){
+            const request2 = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${movieDB_token}&language=fr-FR&query=${search}&page=${i}&include_adult=false`, options)
+            await request2.json().then((result2) => {
+                const array: any[] = result2.results;
+                if(array.length > 0){
+                    all_results = all_results.concat(result2.results);
+                }
+                
+            })
+            
+        }
+        
     });
     
     return all_results;
