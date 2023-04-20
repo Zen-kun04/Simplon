@@ -9,10 +9,35 @@
             display: flex !important;
         }
     }
+    div#right-side{
+        span#search{
+            display: unset !important;
+        }
+        input#seach-input {
+            display: none;
+            width: 0px;
+            background-color: #222222;
+            border: none;
+            outline: none;
+            color: white;
+            transition: all 200ms linear;
+            // border: 1px solid white;
+            height: 30px;
+            background-color: #272727;
+            // padding-left: 15px;
+            padding-left: 0px;
+            &::placeholder{
+                // padding-left: 5px;
+                padding-left: 0px;
+            }
+            &:focus{
+                outline: none;
+            }
+        }
+    }
     div.carousel-container {
         span {
             display: unset !important;
         }
     }
-    
 }

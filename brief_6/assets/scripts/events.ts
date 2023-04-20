@@ -39,7 +39,7 @@ export function pageChangeEvent(element: HTMLParagraphElement, all_results: any[
 
 {
     const span_search = document.querySelector("header div#right-side span#search");
-    const input_search: HTMLInputElement | null = document.querySelector("header div#right-side input");
+    const input_search: HTMLInputElement | null = document.querySelector("header > div#right-side > input#seach-input");
     if(span_search && input_search){
         span_search.addEventListener('click', () => {
             input_search.style.display = "unset";
@@ -47,8 +47,8 @@ export function pageChangeEvent(element: HTMLParagraphElement, all_results: any[
                 input_search.focus();
                 input_search.style.border = "1px solid white";
                 input_search.style.width = "170px";
-                input_search.style.paddingRight = "15px";
-                input_search.style.marginRight = "20px";
+                input_search.style.paddingLeft = "15px";
+                // input_search.style.marginRight = "20px";
             }, 1)
             
         })

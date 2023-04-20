@@ -75,19 +75,22 @@ body {
             &:hover{
                 cursor: pointer;
             }
+            display: none;
         }
         input {
-            display: none;
-            width: 0px;
+            // display: none;
+            width: 170px;
             background-color: #222222;
             border: none;
             outline: none;
             color: white;
-            transition: all 200ms linear;
-            // border: 1px solid white;
+            
+            border: 1px solid white;
             height: 30px;
             background-color: #272727;
             padding-left: 15px;
+            padding-right: 15px;
+            margin-right: 20px;
             &::placeholder{
                 padding-left: 5px;
             }
@@ -112,14 +115,14 @@ body {
             transition: margin-left 500ms linear;
         }
         div#popup-info-container{
-            background-color: rgba(0, 0, 0, 0.471);
-            width: 100%;
-            height: calc(100% + 130px);
-            position: absolute;
-            top: 0;
-            left: 0;
-            transform: translate(0, 0);
-            z-index: 400;
+            // background-color: rgba(0, 0, 0, 0.471);
+            // width: 100%;
+            // height: calc(100% + 130px);
+            // position: absolute;
+            // top: 0;
+            // left: 0;
+            // transform: translate(0, 0);
+            // z-index: 400;
             #popup-info {
                 width: 0px;
                 height: 0px;
@@ -262,8 +265,11 @@ body {
         #pages-container {
             display: flex;
             justify-content: center;
+            width: 50%;
+            flex-wrap: wrap;
+            // margin: 0 auto;
             gap: 5px;
-            margin: 100px 0;
+            margin: 100px auto;
             .page_paragraph {
                 color: white;
                 padding: 5px;
