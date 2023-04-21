@@ -79,7 +79,7 @@ body {
         }
         input {
             // display: none;
-            width: 170px;
+            width: 120px;
             background-color: #222222;
             border: none;
             outline: none;
@@ -107,12 +107,44 @@ body {
         width: 100vw;
         position: relative;
         #hamburger-div-container{
-            width: 40%;
+            width: 25%;
             height: 60%;
-            background-color: red;
+            margin-left: 0px;
+            background-color: #222222;
             position: absolute;
             z-index: 50;
             transition: margin-left 500ms linear;
+            margin-left: -500px;
+            min-width: 194px;
+            &.hidden {
+                display: none;
+            }
+            #profile{
+                margin-left: 20px;
+                display: flex;
+                gap: 5px;
+                img{
+                    width: 20%;
+                }
+            }
+
+            ul {
+                margin-top: 15px;
+                margin-left: 20px;
+                list-style: none;
+                li {
+                    font-family: Arial, Helvetica, sans-serif;
+                    color: #BCBCBC;
+                    &#selected {
+                        color: white;
+                        
+                        font-weight: bold;
+                    }
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
         }
         div#popup-info-container{
             // background-color: rgba(0, 0, 0, 0.471);

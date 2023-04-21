@@ -68,26 +68,23 @@ export function pageChangeEvent(element: HTMLParagraphElement, all_results: any[
     const hamburger_icon: HTMLSpanElement | null = document.querySelector("span#hamburger");
     if(hamburger_icon){
         hamburger_icon.addEventListener('click', () => {
-            if(document.querySelector("main div#hamburger-div-container") === null){
-                const global_div: HTMLDivElement = document.createElement('div');
-                global_div.id = "hamburger-div-container";
-                global_div.style.marginLeft = "-500px";
-                
-                document.querySelector("main")?.insertBefore(global_div, document.querySelector("main")!.firstChild);
+            const global_div = document.querySelector("main div#hamburger-div-container") as HTMLDivElement;
+            if(global_div.classList.contains("hidden")){
+                global_div.classList.remove("hidden");
+                // global_div.style.marginLeft = "-500px";
+
                 setTimeout(() => {
                     global_div.style.marginLeft = "0px";
                 }, 1)
-                
-            }else{
-                const global_div = document.querySelector("main div#hamburger-div-container") as HTMLDivElement;
-                global_div.style.marginLeft = "-500px";
-                setTimeout(() => {
-                    global_div.remove();
-                }, 500)
                 // setTimeout(() => {
                 //     global_div.remove();
                 // }, 1000)
                 
+            }else{
+                global_div.style.marginLeft = "-500px";
+                setTimeout(() => {
+                    global_div.classList.add("hidden");
+                }, 1000)
             }
             
         })
