@@ -81,10 +81,10 @@ export function pageChangeEvent(element: HTMLParagraphElement, all_results: any[
                 // }, 1000)
                 
             }else{
-                global_div.style.marginLeft = "-500px";
+                global_div.style.marginLeft = "-200px";
                 setTimeout(() => {
                     global_div.classList.add("hidden");
-                }, 1000)
+                }, 500)
             }
             
         })
