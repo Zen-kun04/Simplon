@@ -1,0 +1,62 @@
+td,
+th {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+table td {
+    color: rgb(0, 0, 0);
+    background-color:rgb(181, 184, 234);
+}
+
+table th {
+    color: rgb(212, 255, 0);
+    background-color:rgb(90, 93, 133);
+}
+
+table {
+    border-spacing: 3px;
+    background-color: rgb(208, 255, 255);
+}
+
+#form-container > form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}
+
+#form-container {
+    background-color: red;
+    max-width: 420px;
+    margin-top: 50px;
+}
+
+#form-container > form > input#title {
+    max-width: 230px;
+}
+
+#form-container > form > textarea {
+    max-width: 230px;
+}
+
+#form-container > form > input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+#form-container > form > input[type="submit"] {
+    max-width: 150px;
+    margin: 0 auto;
+    background-image: linear-gradient(
+        rgb(149, 50, 255), rgb(25, 75, 255), rgb(0, 247, 255)
+    );
+    color: greenyellow;
+}
+
+#editor {
+    position: fixed;
+    max-width: 600px;
+    max-height: 450px;
+    background-color: rgb(129, 179, 223);
+    z-index: 500;
+    right: 20%;
+    border: 15px solid black;
+}
