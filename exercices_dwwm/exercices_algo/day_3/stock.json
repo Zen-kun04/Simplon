@@ -1,0 +1,28 @@
+{
+    "telephones": [
+      {
+        "modele": "iPhone 13",
+        "stock": 8
+      },
+      {
+        "modele": "iPhone 14",
+        "stock": 0
+      },
+      {
+        "modele": "Samsung S14",
+        "stock": 3
+      },
+      {
+        "modele": "Samsung S15",
+        "stock": 0
+      },
+      {
+        "modele": "Xiaomi Note 10",
+        "stock": 5
+      },
+      {
+        "modele": "Xiaomi Pixel 6",
+        "stock": 10
+      }
+    ]
+  }

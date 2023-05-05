@@ -1,0 +1,39 @@
+{
+  "utilisateurs": [
+    {
+      "email": "dupont@simplon.co",
+      "nom": "Dupont",
+      "prenom": "Marie",
+      "mot_de_passe": "1234",
+      "role": "Administrateur"
+    },
+    {
+      "email": "martin@simplon.co",
+      "nom": "Martin",
+      "prenom": "Pierre",
+      "mot_de_passe": "password",
+      "role": "Invité"
+    },
+    {
+      "email": "garcia@simplon.co",
+      "nom": "Garcia",
+      "prenom": "Ana",
+      "mot_de_passe": "0000",
+      "role": "Administrateur"
+    },
+    {
+      "email": "smith@simplon.co",
+      "nom": "Smith",
+      "prenom": "John",
+      "mot_de_passe": "simplon",
+      "role": "Invité"
+    },
+    {
+      "email": "nguyen@simplon.co",
+      "nom": "Nguyen",
+      "prenom": "Thanh",
+      "mot_de_passe": "admin",
+      "role": "Administrateur"
+    }
+  ]
+}

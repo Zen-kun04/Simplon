@@ -1,0 +1,40 @@
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    min-height: 300px;
+    border: 2px solid black;
+}
+
+.exoTitle {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 250px;
+}
+
+.errorMsg {
+    color: red;
+}
+
+.successMsg {
+    color: green;
+}

@@ -1,0 +1,22 @@
+:root {
+    --gradient: linear-gradient(
+        90deg,
+        #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%
+    )
+}
+
+body {
+    background-image: var(--gradient);
+    background-size: 6000px;
+    background-repeat: no-repeat;
+    animation: back linear 15s infinite alternate;
+}
+
+@keyframes back {
+    0%{
+        background-position-x: 0px;
+    }
+    100% {
+        background-position-x: 100%;
+    }
+}
